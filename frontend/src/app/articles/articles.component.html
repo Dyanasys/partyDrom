@@ -2,10 +2,6 @@
   <div class="container">
     <h1 class="display-3">Articles</h1>
     <p class="lead">Books in your heart <3</p>
-    <hr class="my-2">
-    <p class="lead">
-      <a class="btn btn-info btn-lg" href="Jumbo action link" role="button">New article</a>
-    </p>
   </div>
 </div>
 <table class="table table-striped">
@@ -21,7 +17,7 @@
   </thead>
   <tbody *ngIf="articles.length">
   <tr *ngFor="let article of articles">
-    <td scope="row">{{article.id}}</td>
+    <td>{{article.id}}</td>
     <td>{{article.title}}</td>
     <td>{{article.body}}</td>
     <td>{{article.author}}</td>
@@ -34,3 +30,6 @@
   </tr>
   </tbody>
 </table>
+<p class="lead">
+  <a class="btn btn-info btn-lg" routerLink="/add" role="button">New article</a>
+</p>
