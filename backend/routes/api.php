@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/article/{id}', function ($id) {
-    return new ArticleResource(Article::findOrFail($id));
+    return new ArticleResource(Article::query()->findOrFail($id));
 });
 Route::get('/articles', function () {
     return ArticleResource::collection(Article::all());

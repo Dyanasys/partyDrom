@@ -24,4 +24,8 @@ export class ArticleService {
     return this.http.post<any>(this.url + '/api/articles', article, this.httpOptions);
   }
 
+  find(id: number): Observable<any> {
+    return this.http.get(this.url + '/api/article/' + id);
+  }
+
 }

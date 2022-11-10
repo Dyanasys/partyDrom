@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../services/article.service";
+// import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-new-article',
@@ -12,6 +13,8 @@ export class NewArticleComponent implements OnInit {
   }
 
   article: any;
+  // articles: any;
+  // dataSource = new MatTableDataSource<any>();
 
   ngOnInit(): void {
   }
@@ -29,5 +32,15 @@ export class NewArticleComponent implements OnInit {
 
     console.log('article added :)');
   }
+
+  // refresh() {
+  //   // this.articles = this.articleService.listArticles().subscribe(article => {
+  //   //   this.articles = article;
+  //   // });
+  //   this.articleService.listArticles().subscribe((data: any[]) => {
+  //     this.dataSource.data = data;
+  //   });
+  //   console.log('refresh2');
+  // }
 
 }

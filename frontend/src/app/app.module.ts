@@ -6,12 +6,14 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ArticlesComponent } from './articles/articles.component';
 import { NewArticleComponent } from './new-article/new-article.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticlesComponent,
-    NewArticleComponent
+    NewArticleComponent,
+    EditArticleComponent
   ],
   imports: [
     BrowserModule,
