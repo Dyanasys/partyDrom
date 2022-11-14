@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../services/article.service";
 import {ActivatedRoute, Router} from '@angular/router';
+
 // import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
@@ -12,6 +13,7 @@ export class EditArticleComponent implements OnInit {
 
   id: any;
   article: any;
+  private sub: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private articleService: ArticleService) {
   }
@@ -19,11 +21,31 @@ export class EditArticleComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.id = Number(routeParams.get('id'));
-    console.log(this.id);
-    this.articleService.find(this.id).subscribe((data:any)=>{
+    console.log("id of article: " + this.id);
+    this.sub = this.articleService.find(this.id).subscribe((data: any) => {
       this.article = data;
+      console.log("Article for editing: " + JSON.stringify(this.article));
     });
-    console.log(this.article);
   }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  update(title: string, body: string, author: string) {
+    this.articleService.update(this.id, this.article).subscribe((res) => {
+      this.router.navigateByUrl('/').then(r => console.log("router navigate of edit"));
+    });
+  }
+
+  // edit():void{
+  //   const routeParams = this.route.snapshot.paramMap;
+  //   this.id = Number(routeParams.get('id'));
+  //   console.log("id of article: " + this.id);
+  //   this.articleService.find(this.id).subscribe((data: any) => {
+  //     this.article = data;
+  //     console.log("Article for editing: " + JSON.stringify(this.article));
+  //   });
+  // }
 
 }
