@@ -10,3 +10,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .tinymarginBottom{
   margin-bottom: 1em;
 }
+
+.primary-bg{
+ background:  #c2185b;
+  color: white;
+}
+
+.dark-bg{
+  background:  #424242;
+  color: white;
+}
+.primary{
+  color:  #c2185b;
+}
+
+.light-primary-bg{
+  background: #ffb8d3;
+}
+
+.dark{
+  color: #424242;
+}
+
+.myTitle{
+  font-size: 3em!important;
+  margin: 1em!important;
+}

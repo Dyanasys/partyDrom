@@ -1,9 +1,9 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-3">Articles</h1>
-    <p class="lead">Books in your heart <3</p>
+
+  <div class="row">
+    <h1 class="myTitle primary">Your Parties<mat-icon>favorite</mat-icon></h1>
+
   </div>
-</div>
+
 
 <div *ngIf="articles.length">
   <div class="row">
@@ -11,9 +11,9 @@
       <mat-card>
         <mat-card-title>{{article.title}}</mat-card-title>
         <mat-card-content>{{article.body}}</mat-card-content>
-        <img mat-card-image alt="" src="/assets/img/teatre.jpg"/>
+        <img mat-card-image alt="" src="/assets/img/party.png"/>
         <mat-card-actions>
-          <button type="button" mat-button color="primary" routerLink="/edit/{{article.id}}">Edit</button>
+          <button type="button" mat-mini-fab color="primary" routerLink="/edit/{{article.id}}">Edit</button>
           <button type="button" mat-button color="warn">Delete</button>
         </mat-card-actions>
         <mat-card-footer>{{article.author}}</mat-card-footer>
