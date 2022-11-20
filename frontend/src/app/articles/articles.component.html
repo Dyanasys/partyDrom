@@ -1,8 +1,11 @@
-
-  <div class="row">
-    <h1 class="myTitle primary">Your Parties<mat-icon>favorite</mat-icon></h1>
-
+<div class="row">
+  <div class="space-between">
+    <h1 class="myTitle light-primary">Your Parties
+      <mat-icon>favorite</mat-icon>
+    </h1>
+    <button mat-raised-button color="primary" routerLink="/add">New party</button>
   </div>
+</div>
 
 
 <div *ngIf="articles.length">
@@ -22,7 +25,5 @@
   </div>
 </div>
 
-<p class="lead">
-  <a class="btn btn-info btn-lg" routerLink="/add" role="button">New article</a>
-</p>
+
 

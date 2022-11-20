@@ -1,45 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
 
-.tinymargin{
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.tinymargin {
   margin: 1em;
 }
 
-.tinymarginBottom{
+.tinymarginBottom {
   margin-bottom: 1em;
 }
 
-.primary-bg{
- background:  #c2185b;
+.primary-bg {
+  background: #c2185b;
   color: white;
 }
 
-.dark-bg{
-  background:  #2b2b2b;
+.dark-bg {
+  background: #2b2b2b;
   color: white;
 }
-.primary{
-  color:  #c2185b;
+
+.primary {
+  color: #c2185b;
 }
 
-.light-primary-bg{
-  background: #ffb8d3;
+.light-primary-bg {
+  background: #f48fb1;
 }
 
-.dark{
+.light-primary {
+  color: #f48fb1
+}
+
+.dark {
   color: #2b2b2b;
 }
-.accent{
+
+.accent {
   color: #424242;
 }
 
-.accent-bg{
+.accent-bg {
   color: #424242;
 }
 
-.myTitle{
-  font-size: 3em!important;
-  margin: 1em!important;
+.myTitle {
+  font-size: 3em !important;
+  margin: 1em !important;
+}
+
+.space-between{
+  display: flex;
+  align-content: space-between;
+  align-items: center;
 }
