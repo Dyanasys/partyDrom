@@ -17,7 +17,7 @@
         <img mat-card-image alt="" src="/assets/img/party.png"/>
         <mat-card-actions>
           <button type="button" mat-mini-fab color="primary" routerLink="/edit/{{article.id}}">Edit</button>
-          <button type="button" mat-button color="warn">Delete</button>
+          <button type="button" mat-button color="warn" (click)="delete(article.id)">Delete</button>
         </mat-card-actions>
         <mat-card-footer>{{article.author}}</mat-card-footer>
       </mat-card>

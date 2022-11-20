@@ -22,12 +22,13 @@ class CreatePartiesTable extends Migration
             $table->string('photo')->nullable();
             $table->date('date');
             $table->time('time');
-            $table->unsignedInteger('alcohol');
-            $table->unsignedInteger('smoke');
+            $table->unsignedTinyInteger('alcohol');
+            $table->unsignedTinyInteger('smoke');
             $table->unsignedBigInteger('id_location');
             $table->string('address');
             $table->string('meeting_details');
             $table->string('phone_contact');
+            $table->unsignedTinyInteger('active');
             $table->timestamps();
         });
     }

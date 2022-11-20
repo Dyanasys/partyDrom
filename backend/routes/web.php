@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\PartyController;
+use App\Http\Resources\partyResource;
+use App\Models\Party;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+

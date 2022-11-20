@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../services/article.service";
+import {Router} from "@angular/router";
+
 // import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
@@ -9,7 +11,7 @@ import {ArticleService} from "../services/article.service";
 })
 export class NewArticleComponent implements OnInit {
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService, private router: Router) {
   }
 
   article: any;
@@ -30,7 +32,9 @@ export class NewArticleComponent implements OnInit {
       this.article = article
     });
 
-    console.log('article added :)');
+    this.router.navigateByUrl('/').then(r => {
+      console.log('article added :)')
+    });
   }
 
   // refresh() {

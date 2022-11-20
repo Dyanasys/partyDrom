@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../services/article.service";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-articles',
@@ -8,7 +9,7 @@ import {ArticleService} from "../services/article.service";
 })
 export class ArticlesComponent implements OnInit {
   articles: any; //esta variable se pasa al html
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -20,6 +21,15 @@ export class ArticlesComponent implements OnInit {
       this.articles = article;
       console.log(this.articles);
     });
+  }
+
+  delete(id: any) {
+    this.articleService.delete(id).subscribe(
+      res => {
+        this.articles = this.articles.filter((a: any) => a.id == id);
+      }
+    );
+    this.router.navigateByUrl('/').then(r => console.log("router navigate of delete"));
   }
 
 }
