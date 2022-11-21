@@ -3,27 +3,77 @@
   <mat-form-field>
     <mat-label>Title</mat-label>
     <mat-hint>Help text</mat-hint>
-    <input matInput type="text" name="title" #title id="title" class="form-control" placeholder=""
-           aria-describedby="helpTitle">
+    <input matInput type="text" name="title" #title id="title" class="form-control" [value]="fakeTitle">
   </mat-form-field>
 </div>
 <div class="form-group">
   <mat-form-field>
-    <mat-label>Body</mat-label>
+    <mat-label>vacantes</mat-label>
     <mat-hint>Help text</mat-hint>
-    <textarea matInput class="form-control" #body name="body" id="body" rows="3" aria-describedby="helpBody"></textarea>
+    <input matInput type="number" name="vacancies" #vacancies id="vacancies" class="form-control" [valueAsNumber]="fakeVacancies">
   </mat-form-field>
 </div>
 <div class="form-group">
   <mat-form-field>
-    <mat-label>Author</mat-label>
+    <mat-label>Descripción</mat-label>
     <mat-hint>Help text</mat-hint>
-    <input matInput type="number" #author name="author" id="author" class="form-control" placeholder=""
-           aria-describedby="helpAuthor">
+    <textarea matInput class="form-control" #description name="description" id="description" rows="3" [value]="fakeDescription"></textarea>
   </mat-form-field>
 </div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>fecha</mat-label>
+    <mat-hint>Help text</mat-hint>
+    <input matInput type="date" #date name="date" id="date" class="form-control">
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Hora</mat-label>
+    <mat-hint>Help text</mat-hint>
+    <input matInput type="time" #time name="time" id="time" class="form-control">
+  </mat-form-field>
+</div>
+<mat-slide-toggle [(ngModel)]="aChecked" #alcohol>alcohol</mat-slide-toggle>
+<mat-slide-toggle [(ngModel)]="sChecked" #smoke>tabaco</mat-slide-toggle>
+
+<!--<div class="form-group">-->
+<!--  <mat-form-field appearance="fill">-->
+<!--    <mat-label>Ciudad</mat-label>-->
+<!--    <mat-select [(value)]="locations">-->
+<!--      <mat-option *ngFor="let loc of locations" [value]=loc.code>-->
+<!--        {{loc.name}}</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+<!--</div>-->
+
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>dirección</mat-label>
+    <mat-hint>Help text</mat-hint>
+    <input matInput type="text" name="address" #address id="address" class="form-control" [value]="fakeDirection">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>detalles del encuentro</mat-label>
+    <mat-hint>Help text</mat-hint>
+    <input matInput type="text" name="meeting_details" #meeting_details id="meeting_details" class="form-control" [value]="fakeDetails">
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>teléfono de contacto</mat-label>
+    <mat-hint>Help text</mat-hint>
+    <input matInput type="text" name="phone_contact" #phone_contact id="phone_contact" class="form-control" [value]="fakePhone">
+  </mat-form-field>
+</div>
+
+
 <button mat-raised-button color="primary" type="button" class="btn btn-success d-flex my-2 ml-auto"
-        (click)="add(title.value, body.value, author.value); title.value=''; body.value=''; author.value='';"
+        (click)="add(vacancies.value,title.value, description.value, null,date.value,time.value, alcohol.checked,smoke.checked, '3',address.value,meeting_details.value,phone_contact.value);"
         routerLink="/">Add
 </button>
+
 

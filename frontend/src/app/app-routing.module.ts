@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {NewArticleComponent} from "./new-article/new-article.component";
-import {EditArticleComponent} from "./edit-article/edit-article.component";
+import {NewPartyComponent} from "./new-party/new-party.component";
+import {UpdatePartyComponent} from "./update-party/update-party.component";
 
 const routes: Routes = [
   {
-    path: 'add', component: NewArticleComponent
+    path: 'add', component: NewPartyComponent
   },
   {
-    path: 'edit/:id', component: EditArticleComponent
+    path: 'edit/:id', component: UpdatePartyComponent
   }
 ];
 

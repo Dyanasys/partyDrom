@@ -9,9 +9,17 @@
 </div>
 <div class="form-group">
   <mat-form-field>
-    <mat-label>Body</mat-label>
+    <mat-label>vacantes</mat-label>
     <mat-hint>Help text</mat-hint>
-    <textarea matInput class="form-control" #body name="body" id="body" rows="3" aria-describedby="helpBody"></textarea>
+    <input matInput type="number" name="title" #title id="vacancies" class="form-control" placeholder=""
+           aria-describedby="helpTitle">
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <mat-hint>Help text</mat-hint>
+    <textarea matInput class="form-control" #body name="description" id="description" rows="3" aria-describedby="helpBody"></textarea>
   </mat-form-field>
 </div>
 <div class="form-group">
