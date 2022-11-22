@@ -20,7 +20,7 @@ class PartyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -31,7 +31,7 @@ class PartyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -42,19 +42,30 @@ class PartyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         if (Party::where('id', $id)->exists()) {
-            $article = Party::find($id);
-            $article->title = $request->title;
-            $article->body = $request->body;
-            $article->author = $request->author;
+            $party = Party::find($id);
+            $party->id_user = $request->id_user;
+            $party->vacancies = $request->vacancies;
+            $party->title = $request->title;
+            $party->description = $request->description;
+            $party->photo = $request->photo;
+            $party->date = $request->date;
+            $party->time = $request->time;
+            $party->alcohol = $request->alcohol;
+            $party->smoke = $request->smoke;
+            $party->id_location = $request->id_location;
+            $party->address = $request->address;
+            $party->meeting_details = $request->meeting_details;
+            $party->phone_contact = $request->phone_contact;
+            $party->active = $request->active;
 
-            $article->save();
+            $party->save();
             return response()->json(['message' => 'record updated succefully :D'], 200);
         } else {
             return response()->json(['message' => 'Party not found :('], 400);
@@ -64,7 +75,7 @@ class PartyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

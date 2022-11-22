@@ -61,3 +61,32 @@ body {
   align-content: space-between;
   align-items: center;
 }
+
+.purple{
+  color: #c4a4ff;
+}
+.green{
+  color: #47a25c;
+}
+
+.red{
+  color: indianred;
+}
+
+.big-font{
+  font-size:3em!important;
+}
+.marginTop{
+  margin-top: 1em;
+}
+
+.medium-y-margin{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.flex-center{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}

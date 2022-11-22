@@ -14,7 +14,7 @@
       <mat-card>
         <mat-card-title>{{article.title}}</mat-card-title>
         <mat-card-content>{{article.body}}</mat-card-content>
-        <img mat-card-image alt="" src="/assets/img/party.png"/>
+        <img mat-card-image alt="" src="/frontend/src/assets/img/party.png"/>
         <mat-card-actions>
           <button type="button" mat-mini-fab color="primary" routerLink="/edit/{{article.id}}">Edit</button>
           <button type="button" mat-button color="warn" (click)="delete(article.id)">Delete</button>

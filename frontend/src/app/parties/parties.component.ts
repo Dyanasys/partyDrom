@@ -24,12 +24,10 @@ export class PartiesComponent implements OnInit {
   }
 
   delete(id: any) {
-    this.partyService.delete(id).subscribe(
-      res => {
-        this.parties = this.parties.filter((a: any) => a.id == id);
-      }
-    );
-    this.router.navigateByUrl('/').then(r => console.log("router navigate of delete"));
+    this.partyService.delete(id).subscribe(party => {
+     this.show();
+      console.log(this.parties);
+    });
   }
 
 }

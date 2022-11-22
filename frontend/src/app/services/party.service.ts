@@ -14,19 +14,19 @@ export class PartyService {
   };
   constructor(private http: HttpClient) { }
   list() {
-    return this.http.get<any>(this.url + '/api/parties');
+    return this.http.get<any>(this.url + '/api/parties', this.httpOptions);
   }
 
-  add(article: any): Observable<any> {
-    return this.http.post<any>(this.url + '/api/parties', article, this.httpOptions);
+  add(party: any): Observable<any> {
+    return this.http.post<any>(this.url + '/api/parties', party, this.httpOptions);
   }
 
   find(id: number): Observable<any> {
-    return this.http.get(this.url + '/api/party/' + id);
+    return this.http.get(this.url + '/api/party/' + id, this.httpOptions);
   }
 
-  update(id: number, article: any): Observable<any> {
-    return this.http.put(this.url + '/api/party/' + id, article, this.httpOptions);
+  update(id: number, party: any): Observable<any> {
+    return this.http.put(this.url + '/api/party/' + id, party, this.httpOptions);
   }
 
   delete(id: any): Observable<any> {

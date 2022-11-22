@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleService} from "../services/article.service";
+import {ArticleService} from "../../services/article.service";
 import {ActivatedRoute, Router} from '@angular/router';
 
 // import {MatTableDataSource} from '@angular/material/table';

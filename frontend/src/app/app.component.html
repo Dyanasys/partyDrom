@@ -1,8 +1,12 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/find-a-plan">Encuentra plan!</button>
+      <button mat-menu-item routerLink="/">Tus fiestas</button>
+      <button mat-menu-item routerLink="/requests">Tus solicitudes</button>
+      <button mat-menu-item routerLink="/profile">Tu perfil</button>
+    </mat-menu>
     <span>PartyDrom</span>
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
@@ -15,5 +19,4 @@
 </p>
 <div class="container">
   <router-outlet></router-outlet>
-  <app-parties></app-parties>
 </div>

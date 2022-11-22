@@ -4,9 +4,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ArticlesComponent} from './articles/articles.component';
-import {NewArticleComponent} from './new-article/new-article.component';
-import {EditArticleComponent} from './edit-article/edit-article.component';
+import {ArticlesComponent} from './myarticles/articles/articles.component';
+import {NewArticleComponent} from './myarticles/new-article/new-article.component';
+import {EditArticleComponent} from './myarticles/edit-article/edit-article.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
@@ -19,6 +19,8 @@ import {MatInputModule} from "@angular/material/input";
 import { PartiesComponent } from './parties/parties.component';
 import { NewPartyComponent } from './new-party/new-party.component';
 import { UpdatePartyComponent } from './update-party/update-party.component';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { UpdatePartyComponent } from './update-party/update-party.component';
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
+    MatDividerModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,10 +11,10 @@ export class NewPartyComponent implements OnInit {
   constructor(private partyService: PartyService, private router: Router) {
   }
   aChecked = true;
-  sChecked = true;
+  sChecked = false;
   fakeVacancies = 2;
   fakeDirection = "calle fake, n21";
-  fakeTitle = "Mega Fiesta en la Piscina";
+  fakeTitle = "FAKE PARTY";
   fakeDescription = "Mis amigos y yo vamos a celebrar una fiesta en la finca de mis abuelos";
   fakeDetails = "Primero quedaremos en el centro del pueblo y desde allí nos vamos en coche";
   fakePhone = "666123123";
