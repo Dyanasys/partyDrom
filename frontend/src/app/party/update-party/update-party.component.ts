@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {PartyService} from "../services/party.service";
+import {PartyService} from "../../services/party.service";
 
 @Component({
   selector: 'app-update-party',

@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {NewPartyComponent} from "./new-party/new-party.component";
-import {UpdatePartyComponent} from "./update-party/update-party.component";
-import {PartiesComponent} from "./parties/parties.component";
+import {NewPartyComponent} from "./party/new-party/new-party.component";
+import {UpdatePartyComponent} from "./party/update-party/update-party.component";
+import {PartiesComponent} from "./party/parties/parties.component";
 
 const routes: Routes = [
   {

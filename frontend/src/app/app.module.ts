@@ -16,9 +16,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
-import { PartiesComponent } from './parties/parties.component';
-import { NewPartyComponent } from './new-party/new-party.component';
-import { UpdatePartyComponent } from './update-party/update-party.component';
+import { PartiesComponent } from './party/parties/parties.component';
+import { NewPartyComponent } from './party/new-party/new-party.component';
+import { UpdatePartyComponent } from './party/update-party/update-party.component';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
 
