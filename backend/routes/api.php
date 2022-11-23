@@ -56,6 +56,5 @@ Route::get('/user/{id}', function ($id) {
 Route::post('/user', [UserController::class, 'store']);
 Route::put('/user/{id}', [UserController::class, 'update']);
 //LOGIN
-Route::post('/auth/register', [UserController::class, 'store']);
-Route::post('/auth/login', [Controller::class, 'authenticate']);
-Route::post('auth/logout', [UserController::class, 'logout']);
+Route::post('/login', [UserController::class, 'authenticate']);
+Route::post('/logout', [UserController::class, 'logout']);

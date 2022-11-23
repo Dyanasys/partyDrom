@@ -21,6 +21,8 @@ import { NewPartyComponent } from './party/new-party/new-party.component';
 import { UpdatePartyComponent } from './party/update-party/update-party.component';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
+import { LoginComponent } from './user/login/login.component';
+import { NewUserComponent } from './user/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {MatMenuModule} from "@angular/material/menu";
     EditArticleComponent,
     PartiesComponent,
     NewPartyComponent,
-    UpdatePartyComponent
+    UpdatePartyComponent,
+    LoginComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,

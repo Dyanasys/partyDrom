@@ -3,10 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function _authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+    public function authenticate(Request $request)
+    {
+
+       $email = $request['email'];
+
+        if (User::where('email', $email)->exists()) {
+            return response()->json(['message' => 'email existe :D'], 200);
+        } else {
+            return response()->json(['message' => 'email no encontrado :('], 400);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
