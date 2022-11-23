@@ -1,23 +1,37 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/find-a-plan">Encuentra plan!</button>
-      <button mat-menu-item routerLink="/">Tus fiestas</button>
-      <button mat-menu-item routerLink="/requests">Tus solicitudes</button>
-      <button mat-menu-item routerLink="/profile">Tu perfil</button>
-      <button mat-menu-item routerLink="/login">LogIn</button>
-      <button mat-menu-item (click)="logout()" routerLink="/signup">LogOut</button>
-      <button mat-menu-item routerLink="/signup">registrate</button>
+      <button mat-menu-item routerLink="/">Encuentra plan!</button>
+      <div *ngIf="session.id_user;">
+        <button mat-menu-item routerLink="/your-parties">Tus fiestas</button>
+        <button mat-menu-item routerLink="/requests">Tus solicitudes</button>
+      </div>
     </mat-menu>
     <span>PartyDrom</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" routerLink="/">
       <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <div class="spacing"></div>
+    <button mat-button [matMenuTriggerFor]="loginMenu">
+      <mat-icon>person_pin</mat-icon>
     </button>
+      <div *ngIf="session.id_user;">
+        Hola {{session.id_user}}!
+      </div>
+    <mat-menu #loginMenu="matMenu">
+      <div *ngIf="session.id_user; else notUser">
+        <button mat-menu-item routerLink="/profile">Tu perfil</button>
+        <button mat-menu-item (click)="logout()" routerLink="/signup">LogOut</button>
+      </div>
+      <ng-template #notUser>
+        <button mat-menu-item routerLink="/login">LogIn</button>
+        <button mat-menu-item routerLink="/signup">registrate</button>
+      </ng-template>
+    </mat-menu>
   </mat-toolbar>
 </p>
 <div class="container">

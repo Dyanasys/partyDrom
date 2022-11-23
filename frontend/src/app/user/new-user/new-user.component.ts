@@ -23,7 +23,7 @@ export class NewUserComponent implements OnInit {
 
     this.commonService.addUser(this.user as any).subscribe(user => {
       this.user = user
-    });
+    }, error => {alert("datos incorrectos :("); console.log(error);});
 
     this.router.navigateByUrl('/').then(r => {
       console.log('user added :)')

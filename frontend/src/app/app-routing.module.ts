@@ -5,6 +5,7 @@ import {UpdatePartyComponent} from "./party/update-party/update-party.component"
 import {PartiesComponent} from "./party/parties/parties.component";
 import {NewUserComponent} from "./user/new-user/new-user.component";
 import {LoginComponent} from "./user/login/login.component";
+import {YourPartiesComponent} from "./party/your-parties/your-parties.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'your-parties', component: YourPartiesComponent
   }
 ];
 

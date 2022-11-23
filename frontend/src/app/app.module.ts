@@ -23,6 +23,9 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
 import { LoginComponent } from './user/login/login.component';
 import { NewUserComponent } from './user/new-user/new-user.component';
+import { YourPartiesComponent } from './party/your-parties/your-parties.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { NewUserComponent } from './user/new-user/new-user.component';
     NewPartyComponent,
     UpdatePartyComponent,
     LoginComponent,
-    NewUserComponent
+    NewUserComponent,
+    YourPartiesComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,8 @@ import { NewUserComponent } from './user/new-user/new-user.component';
     MatInputModule,
     MatDividerModule,
     MatMenuModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
