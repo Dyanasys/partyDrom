@@ -69,6 +69,9 @@
         </mat-card-actions>
         <mat-card-footer>
           <mat-divider></mat-divider>
+          <div *ngIf="session.id_user">
+            id user session: {{session.id_user}}
+          </div>
           <div class="tinymargin">{{party.id_user}}</div>
         </mat-card-footer>
       </mat-card>

@@ -22,7 +22,7 @@ export class CommonService {
     return this.http.post<any>(this.url + '/api/user', user, this.httpOptions);
   }
   login(user: any): Observable<any> {
-    return this.http.post<any>(this.url + '/api/login', user, this.httpOptions);
+    return this.http.post<any>(this.url + '/api/login?XDEBUG_SESSION_START=1', user, this.httpOptions);
   }
 
   // list() {

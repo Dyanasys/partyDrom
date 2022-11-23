@@ -20,13 +20,23 @@ user:any;
       'password': password
     }
 
-    this.commonService.login(this.user as any).subscribe(user => {
-      this.user = user
-    });
+    this.commonService.login(this.user as any).subscribe(res => {
+      let user_id= res[0].id;
+      sessionStorage.setItem('id_user', user_id);
+      this.router.navigateByUrl('/').then(r => console.log(res))
+    },error => this.router.navigateByUrl('/').then(r =>{
+      alert("Los datos introducidos no son válidos, prueba otra vez.");
+      console.log(error);
+    } ));
 
-    this.router.navigateByUrl('/').then(r => {
-      console.log('user logged :)')
-    });
+
+    // this.router.navigateByUrl('/').then(r => {
+    //   console.log('user logged :)')
+    // });
+  }
+
+  logout(){
+    sessionStorage.removeItem('id_user');
   }
 
 }

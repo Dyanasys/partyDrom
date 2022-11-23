@@ -27,7 +27,7 @@ export class UpdatePartyComponent implements OnInit {
 
   update() {
     this.partyService.update(this.id, this.party).subscribe((res) => {
-      this.router.navigateByUrl('/').then(r => console.log("router navigate of edit"));
+      this.router.navigateByUrl('/').then(r => console.log(res));
     });
   }
 

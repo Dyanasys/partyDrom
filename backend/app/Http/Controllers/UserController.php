@@ -3,33 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function _authenticate(Request $request): RedirectResponse
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    }
     public function authenticate(Request $request)
     {
-
-       $email = $request['email'];
+        $email = $request['email'];
+        $password = $request['password'];
+        if (User::where("email", "like", $email)->where('password', 'like', $password)->exists()) {
+            $id_user = User::where("email", "like", $email)->where('password', 'like', $password)->get('id');
+            return response()->json($id_user);
+        } else {
+            return response()->json('usuario NO encontrado');
+        }
+    }
+//    public function _authenticate(Request $request): RedirectResponse
+//    {
+//        $credentials = $request->validate([
+//            'email' => ['required', 'email'],
+//            'password' => ['required'],
+//        ]);
+//
+//        if (Auth::attempt($credentials)) {
+//            $request->session()->regenerate();
+//
+//            return redirect()->intended('dashboard');
+//        }
+//
+//        return back()->withErrors([
+//            'email' => 'The provided credentials do not match our records.',
+//        ])->onlyInput('email');
+//    }
+    public function _authenticate(Request $request)
+    {
+        $email = $request['email'];
 
         if (User::where('email', $email)->exists()) {
             return response()->json(['message' => 'email existe :D'], 200);
@@ -37,6 +45,7 @@ class UserController extends Controller
             return response()->json(['message' => 'email no encontrado :('], 400);
         }
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +69,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -71,7 +80,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -82,7 +91,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -93,8 +102,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -115,7 +124,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

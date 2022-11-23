@@ -9,10 +9,12 @@ import {PartyService} from "../../services/party.service";
 })
 export class PartiesComponent implements OnInit {
   parties: any; //esta variable se pasa al html
+  session: any;
   constructor(private partyService: PartyService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.session = sessionStorage;
     this.show();
   }
 
