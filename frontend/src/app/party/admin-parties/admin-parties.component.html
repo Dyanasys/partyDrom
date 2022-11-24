@@ -11,7 +11,7 @@
 <div *ngIf="parties.length&&session.id_user; else noParties">
   <div class="row">
     <div class="col-md-4 tinyMarginBottom" *ngFor="let party of parties" style="margin-bottom:10px!important">
-      <div *ngIf="party.id_user == session.id_user">
+      <div *ngIf="party.id_user != session.id_user">
         <mat-card>
           <mat-card-title class="mat-h1 light-primary">
             <div>
@@ -66,7 +66,6 @@
             <div>
               <button type="button" mat-mini-fab color="primary" routerLink="/edit/{{party.id}}">Edit</button>
               <button type="button" mat-button color="warn" (click)="delete(party.id)" routerLink="/">Delete</button>
-              <button type="button" mat-fab color="warn">Tienes Solicitudes!</button>
             </div>
           </mat-card-actions>
           <mat-card-footer>
@@ -83,11 +82,12 @@
 </div>
 <ng-template #noParties>
   <div *ngIf="!session.id_user; else isLogin">
-    <h3 class="primary">Logueate para ver las fiestas</h3>
+    <h3 class="primary">Logueate como admin para editar las fiestas</h3>
   </div>
   <ng-template #isLogin>
     <mat-spinner></mat-spinner>
-    <h1 class="primary">Ups, parece que no has publicado ninguna fiesta :(</h1>
+    <h1 class="primary">Ups, parece que no hay fiestas :(</h1>
   </ng-template>
 </ng-template>
+
 

@@ -6,6 +6,9 @@ import {PartiesComponent} from "./party/parties/parties.component";
 import {NewUserComponent} from "./user/new-user/new-user.component";
 import {LoginComponent} from "./user/login/login.component";
 import {YourPartiesComponent} from "./party/your-parties/your-parties.component";
+import {AdminPartiesComponent} from "./party/admin-parties/admin-parties.component";
+import {UsersComponent} from "./user/users/users.component";
+import {UpdateUserComponent} from "./user/update-user/update-user.component";
 
 const routes: Routes = [
   {
@@ -25,7 +28,19 @@ const routes: Routes = [
   },
   {
     path: 'your-parties', component: YourPartiesComponent
-  }
+  },
+  {
+    path: 'admin-parties', component: AdminPartiesComponent
+  },
+  {
+    path: 'admin-users', component: UsersComponent
+  },
+  {
+    path: 'edit-user/:id', component: UpdateUserComponent
+  },
+  {
+    path: 'add-user', component: NewUserComponent
+  },
 ];
 
 @NgModule({

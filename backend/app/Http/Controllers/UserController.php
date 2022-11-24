@@ -35,16 +35,6 @@ class UserController extends Controller
 //            'email' => 'The provided credentials do not match our records.',
 //        ])->onlyInput('email');
 //    }
-    public function _authenticate(Request $request)
-    {
-        $email = $request['email'];
-
-        if (User::where('email', $email)->exists()) {
-            return response()->json(['message' => 'email existe :D'], 200);
-        } else {
-            return response()->json(['message' => 'email no encontrado :('], 400);
-        }
-    }
 
     /**
      * Display a listing of the resource.
@@ -53,7 +43,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return User::all();
     }
 
     /**
@@ -85,7 +75,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return User::find($id);
     }
 
     /**

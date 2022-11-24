@@ -20,5 +20,10 @@
       </mat-form-field>
     </div>
   </div>
-  <button mat-raised-button color="primary" (click)="add(name.value, email.value, password.value)">Registrame!</button>
+  <button mat-raised-button color="primary" (click)="add(name.value, email.value, password.value)">
+    <div *ngIf="session.id_user&&session.id_user==1; else noAdmin">
+      Crear Usuario
+    </div>
+    <ng-template #noAdmin>Registrame!</ng-template>
+  </button>
 </div>

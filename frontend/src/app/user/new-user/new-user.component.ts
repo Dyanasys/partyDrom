@@ -9,10 +9,11 @@ import {Router} from "@angular/router";
 })
 export class NewUserComponent implements OnInit {
   user:any;
-
+  session : any;
   constructor(private commonService:CommonService,private router: Router) { }
 
   ngOnInit(): void {
+    this.session = sessionStorage;
   }
   add(name: string, email: string, password: string) {
     this.user = {

@@ -26,6 +26,9 @@ import { NewUserComponent } from './user/new-user/new-user.component';
 import { YourPartiesComponent } from './party/your-parties/your-parties.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { AdminPartiesComponent } from './party/admin-parties/admin-parties.component';
+import { UsersComponent } from './user/users/users.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     UpdatePartyComponent,
     LoginComponent,
     NewUserComponent,
-    YourPartiesComponent
+    YourPartiesComponent,
+    AdminPartiesComponent,
+    UsersComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

@@ -30,7 +30,7 @@ export class NewPartyComponent implements OnInit {
     let numSmoke = smoke?1:0;
 
     this.party = {
-      'id_user': 1,
+      'id_user': sessionStorage['id_user'],
       'vacancies':parseInt(vacancies),
       'title': title,
       'description': description,

@@ -25,6 +25,13 @@ export class CommonService {
     return this.http.post<any>(this.url + '/api/login?XDEBUG_SESSION_START=1', user, this.httpOptions);
   }
 
+  listUsers() {
+    return this.http.get<any>(this.url + '/api/users');
+  }
+  deleteUser(id: any): Observable<any> {
+    return this.http.delete<any>(this.url + '/api/user/' + id, this.httpOptions);
+  }
+
   // list() {
   //   return this.http.get<any>(this.url + '/api/articles');
   // }
