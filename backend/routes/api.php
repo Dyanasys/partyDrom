@@ -62,3 +62,35 @@ Route::put('/user/{id}', [UserController::class, 'update']);
 //LOGIN
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::post('/logout', [UserController::class, 'logout']);
+//PROFILES
+Route::get('/profile/{id}', function ($id) {
+    return new PartyResource(Party::query()->findOrFail($id));
+});
+Route::get('/profiles', function () {
+    return PartyResource::collection(Party::all());
+});
+Route::put('/profile/{id}', [PartyController::class, 'update']);
+Route::delete('/profile/{id}', [PartyController::class, 'destroy']);
+Route::post('/profiles', [PartyController::class, 'store']);
+
+//REQUESTS
+Route::get('/request/{id}', function ($id) {
+    return new PartyResource(Party::query()->findOrFail($id));
+});
+Route::get('/requests', function () {
+    return PartyResource::collection(Party::all());
+});
+Route::put('/request/{id}', [PartyController::class, 'update']);
+Route::delete('/request/{id}', [PartyController::class, 'destroy']);
+Route::post('/requests', [PartyController::class, 'store']);
+
+//LOCATIONS
+Route::get('/location/{id}', function ($id) {
+    return new PartyResource(Party::query()->findOrFail($id));
+});
+Route::get('/locations', function () {
+    return PartyResource::collection(Party::all());
+});
+Route::put('/location/{id}', [PartyController::class, 'update']);
+Route::delete('/location/{id}', [PartyController::class, 'destroy']);
+Route::post('/locations', [PartyController::class, 'store']);

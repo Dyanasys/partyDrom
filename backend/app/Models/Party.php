@@ -9,6 +9,7 @@ class Party extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'id_user',
         'vacancies',
         'title',
