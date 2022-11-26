@@ -22,7 +22,16 @@ export class CommonService {
     return this.http.post<any>(this.url + '/api/user', user, this.httpOptions);
   }
   login(user: any): Observable<any> {
-    return this.http.post<any>(this.url + '/api/login?XDEBUG_SESSION_START=1', user, this.httpOptions);
+    return this.http.post<any>(this.url + '/api/login', user, this.httpOptions);
+  }
+
+  findUser(id_user:any = null) {
+    if (id_user==null&&sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else if(id_user==null) {
+      id_user = 1;
+    }
+    return this.http.get<any>(this.url + '/api/user/' + id_user, this.httpOptions);
   }
 
   listUsers() {
@@ -36,6 +45,9 @@ export class CommonService {
       id_user = 1;
     }
     return this.http.get<any>(this.url + '/api/admin-users/' + id_user, this.httpOptions);
+  }
+  updateUser(id: number, user: any): Observable<any> {
+    return this.http.put(this.url + '/api/user/' + id, user, this.httpOptions);
   }
   deleteUser(id: any): Observable<any> {
     return this.http.delete<any>(this.url + '/api/user/' + id, this.httpOptions);
@@ -52,7 +64,7 @@ export class CommonService {
     return this.http.get<any>(this.url + '/api/profiles/' + id_user, this.httpOptions);
   }
 
-  listProfile(id_user:any = null) {
+  findProfile(id_user:any = null) {
     if (id_user==null&&sessionStorage['id_user']) {
       id_user = sessionStorage['id_user'];
     } else if(id_user==null) {

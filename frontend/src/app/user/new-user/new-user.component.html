@@ -21,7 +21,7 @@
     </div>
   </div>
   <button mat-raised-button color="primary" (click)="add(name.value, email.value, password.value)">
-    <div *ngIf="session.id_user&&session.id_user==1; else noAdmin">
+    <div *ngIf="session.is_admin&&session.is_admin==1; else noAdmin">
       Crear Usuario
     </div>
     <ng-template #noAdmin>Registrame!</ng-template>

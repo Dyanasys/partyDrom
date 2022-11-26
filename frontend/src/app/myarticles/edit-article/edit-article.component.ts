@@ -24,7 +24,6 @@ export class EditArticleComponent implements OnInit {
     console.log("id of article: " + this.id);
     this.sub = this.articleService.find(this.id).subscribe((data: any) => {
       this.article = data;
-      console.log("Article for editing: " + JSON.stringify(this.article));
     });
   }
 

@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="users.length&&session.id_user==1; else noParties">
+<div class="row" *ngIf="users.length&&session.is_admin&&session.is_admin==1; else noParties">
   <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let user of users">
     <mat-card>
       <mat-card-title class="mat-h1 light-primary">
@@ -35,7 +35,7 @@
   </div>
 </div>
 <ng-template #noParties>
-  <div *ngIf="!session.id_user; else isLogin">
+  <div *ngIf="!session.is_admin; else isLogin">
     <h3 class="primary">Logueate como admin</h3>
   </div>
   <ng-template #isLogin>

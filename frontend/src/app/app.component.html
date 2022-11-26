@@ -19,20 +19,20 @@
     <button mat-button [matMenuTriggerFor]="loginMenu">
       <mat-icon>person_pin</mat-icon>
     </button>
-      <div *ngIf="session.id_user;">
-        Hola {{session.id_user}}!
+      <div *ngIf="session.user_name;">
+        Hola {{session.user_name}}!
       </div>
     <mat-menu #loginMenu="matMenu">
       <div *ngIf="session.id_user; else notUser">
         <button mat-menu-item routerLink="/profile">Tu perfil</button>
-        <button mat-menu-item (click)="logout()" routerLink="/signup">LogOut</button>
+        <button mat-menu-item (click)="logout()" routerLink="/">LogOut</button>
       </div>
       <ng-template #notUser>
         <button mat-menu-item routerLink="/login">LogIn</button>
         <button mat-menu-item routerLink="/signup">registrate</button>
       </ng-template>
     </mat-menu>
-<div *ngIf="session.id_user&&session.id_user==1">
+<div *ngIf="session.is_admin&&session.is_admin==1">
   <button mat-button [matMenuTriggerFor]="adminMenu">
     Admin
     <mat-icon>menu</mat-icon>

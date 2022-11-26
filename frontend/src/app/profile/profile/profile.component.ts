@@ -4,13 +4,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CommonService} from "../../services/common.service";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
-  users: any; //esta variable se pasa al html
+  profile: any; //esta variable se pasa al html
   session: any;
   constructor(private commonService: CommonService, private route: ActivatedRoute, private router: Router) {
   }
@@ -21,16 +21,15 @@ export class UsersComponent implements OnInit {
   }
 
   show() {
-    this.users = this.commonService.listAdminUsers().subscribe((users: any) => {
-      this.users = users;
+    this.profile = this.commonService.findProfile().subscribe(profile => {
+      this.profile = profile;
     });
   }
 
   delete(id: any) {
-    this.commonService.deleteUser(id).subscribe(user => {
-      this.router.navigateByUrl('/admin-users').then(r => console.log(r) );
+    this.commonService.deleteProfile(id).subscribe(profile => {
+      this.show();
     });
   }
-
 
 }

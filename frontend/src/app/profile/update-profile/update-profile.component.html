@@ -1,0 +1,39 @@
+<hr class="my-4">
+<div *ngIf="profile">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <mat-form-field>
+        <mat-label>Nombre para mostrar</mat-label>
+        <input matInput type="text" #title id="title" [(ngModel)]="profile.public_name">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-12">
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea matInput #description id="description" rows="3" [(ngModel)]="profile.description"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-12">
+      <mat-form-field>
+        <mat-label>fecha de nacimiento</mat-label>
+        <input matInput type="date" #date id="date" [(ngModel)]="profile.birth_date">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <mat-slide-toggle [(ngModel)]="profile.alcohol_pref" #alcohol>alcohol</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="profile.smoke_pref" #smoke>tabaco</mat-slide-toggle>
+    </div>
+    <div class="col-md-6 col-12">
+      <mat-form-field>
+        <mat-label>teléfono *no visible</mat-label>
+        <input matInput type="text" #phone id="phone_contact" [(ngModel)]="profile.phone">
+      </mat-form-field>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" type="button" class="btn btn-success d-flex my-2 ml-auto"
+          (click)="update();"
+          routerLink="/">update
+  </button>
+</div>
+

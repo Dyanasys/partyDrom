@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,10 @@ class UserController extends Controller
         $email = $request['email'];
         $password = $request['password'];
         if (User::where("email", "like", $email)->where('password', 'like', $password)->exists()) {
-            $id_user = User::where("email", "like", $email)->where('password', 'like', $password)->get('id');
-            return response()->json($id_user);
+            $user = User::where("email", "like", $email)->where('password', 'like', $password)->get();
+            return response()->json($user);
         } else {
-            return response()->json('usuario NO encontrado');
+            return response()->json('0');
         }
     }
 //    public function _authenticate(Request $request): RedirectResponse
@@ -64,7 +65,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create($request->all());
+       $user = User::create($request->all());
+//        $id = $this->create($request)->id;
+        $id = $user->id;
+        $profile = new Profile;
+        $profile->id_user = $id;
+        $profile->save();
+        return $user;
     }
 
     /**

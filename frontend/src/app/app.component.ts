@@ -15,6 +15,8 @@ export class AppComponent implements OnInit{
 
   logout() {
     sessionStorage.removeItem('id_user');
+    sessionStorage.removeItem('is_admin');
+    sessionStorage.removeItem('user_name');
   }
 
 }
