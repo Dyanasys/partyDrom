@@ -21,8 +21,8 @@ export class UsersComponent implements OnInit {
   }
 
   show() {
-    this.users = this.commonService.listUsers().subscribe(user => {
-      this.users = user;
+    this.users = this.commonService.listAdminUsers().subscribe(users => {
+      this.users = users;
     });
   }
 

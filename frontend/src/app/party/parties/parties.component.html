@@ -4,83 +4,77 @@
       <mat-icon>favorite</mat-icon>
     </h1>
     <mat-autocomplete #auto="matAutocomplete">
-<!--      <mat-option *ngFor="let option of options" [value]="option">-->
-<!--        {{option}}-->
-<!--      </mat-option>-->
+      <!--      <mat-option *ngFor="let option of options" [value]="option">-->
+      <!--        {{option}}-->
+      <!--      </mat-option>-->
     </mat-autocomplete>
   </div>
 </div>
 
-
-<div *ngIf="parties.length&&session.id_user; else noParties">
-  <div class="row">
-    <div class="col-md-4 tinyMarginBottom" *ngFor="let party of parties" style="margin-bottom:10px!important">
-      <div *ngIf="party.id_user != session.id_user">
-        <mat-card>
-          <mat-card-title class="mat-h1 light-primary">
-            <div>
-              {{party.title}}
+<div class="row" *ngIf="parties.length&&session.id_user; else noParties">
+  <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let party of parties">
+    <mat-card>
+      <mat-card-title class="mat-h1 light-primary">
+        <div>
+          {{party.title}}
+        </div>
+      </mat-card-title>
+      <img mat-card-image alt="" src="../../../assets/img/party.png"/>
+      <mat-card-content class="tinymargin">
+        <div class="row" style="margin-bottom: 1em">
+          {{party.description}}
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row purple medium-y-margin flex-center">
+          <h1 class="mat-h1"><span class="big-font marginTop">{{party.vacancies}}</span> vacantes!</h1>
+        </div>
+        <div class="row purple">
+          Localidad: {{party.id_location}}
+        </div>
+        <div class="row purple">
+          Fecha: {{party.date}}
+        </div>
+        <div class="row purple">
+          hora: {{party.time}}
+        </div>
+        <div class="row" style="margin-top:1em">
+          <div *ngIf="party.alcohol==true; else elseBlock2" class="green">
+            <mat-icon>check_circle</mat-icon>
+            Alcohol
+          </div>
+          <ng-template #elseBlock2>
+            <div class="red">
+              <mat-icon>cancel</mat-icon>
+              Alcohol
             </div>
-          </mat-card-title>
-          <img mat-card-image alt="" src="../../../assets/img/party.png"/>
-          <mat-card-content class="tinymargin">
-            <div class="row" style="margin-bottom: 1em">
-              {{party.description}}
+          </ng-template>
+        </div>
+        <div class="row">
+          <div *ngIf="party.smoke==true; else elseBlock" class="green">
+            <mat-icon>check_circle</mat-icon>
+            Tabaco
+          </div>
+          <ng-template #elseBlock>
+            <div class="red">
+              <mat-icon>cancel</mat-icon>
+              Tabaco
             </div>
-            <mat-divider></mat-divider>
-            <div class="row purple medium-y-margin flex-center">
-              <h1 class="mat-h1"><span class="big-font marginTop">{{party.vacancies}}</span> vacantes!</h1>
-            </div>
-            <div class="row purple">
-              Localidad: {{party.id_location}}
-            </div>
-
-            <div class="row purple">
-              Fecha: {{party.date}}
-            </div>
-            <div class="row purple">
-              hora: {{party.time}}
-            </div>
-            <div class="row" style="margin-top:1em">
-              <div *ngIf="party.alcohol==true; else elseBlock2" class="green">
-                <mat-icon>check_circle</mat-icon>
-                Alcohol
-              </div>
-              <ng-template #elseBlock2>
-                <div class="red">
-                  <mat-icon>cancel</mat-icon>
-                  Alcohol
-                </div>
-              </ng-template>
-            </div>
-            <div class="row">
-              <div *ngIf="party.smoke==true; else elseBlock" class="green">
-                <mat-icon>check_circle</mat-icon>
-                Tabaco
-              </div>
-              <ng-template #elseBlock>
-                <div class="red">
-                  <mat-icon>cancel</mat-icon>
-                  Tabaco
-                </div>
-              </ng-template>
-            </div>
-          </mat-card-content>
-          <mat-card-actions>
-            <div>
-              <button type="button" mat-mini-fab color="primary">Me apunto!</button>
-            </div>
-          </mat-card-actions>
-          <mat-card-footer>
-            <mat-divider></mat-divider>
-            <div *ngIf="session.id_user">
-              id user session: {{session.id_user}}
-            </div>
-            <div class="tinymargin">{{party.id_user}}</div>
-          </mat-card-footer>
-        </mat-card>
-      </div>
-    </div>
+          </ng-template>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div>
+          <button type="button" mat-mini-fab color="primary">Me apunto!</button>
+        </div>
+      </mat-card-actions>
+      <mat-card-footer>
+        <mat-divider></mat-divider>
+        <div *ngIf="session.id_user">
+          id user session: {{session.id_user}}
+        </div>
+        <div class="tinymargin">{{party.id_user}}</div>
+      </mat-card-footer>
+    </mat-card>
   </div>
 </div>
 <ng-template #noParties>

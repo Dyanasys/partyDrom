@@ -20,16 +20,14 @@ export class AdminPartiesComponent implements OnInit {
   }
 
   show() {
-    this.parties = this.partyService.list().subscribe(party => {
+    this.parties = this.partyService.listUsersParties().subscribe(party => {
       this.parties = party;
-      console.log(this.parties);
     });
   }
 
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
       this.show();
-      console.log(this.parties);
     });
   }
 

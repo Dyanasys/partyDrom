@@ -88,4 +88,8 @@ class PartyController extends Controller
             return response()->json(['message' => 'Party not found :('], 404);
         }
     }
+
+//    public function getUsersParties($id_user){
+//        return  Party::where("id", "<>", $id_user)->get();
+//    }
 }

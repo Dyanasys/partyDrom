@@ -9,6 +9,9 @@ import {YourPartiesComponent} from "./party/your-parties/your-parties.component"
 import {AdminPartiesComponent} from "./party/admin-parties/admin-parties.component";
 import {UsersComponent} from "./user/users/users.component";
 import {UpdateUserComponent} from "./user/update-user/update-user.component";
+import {ProfileComponent} from "./profile/profile/profile.component";
+import {ProfilesComponent} from "./profile/profiles/profiles.component";
+import {UpdateProfileComponent} from "./profile/update-profile/update-profile.component";
 
 const routes: Routes = [
   {
@@ -40,6 +43,15 @@ const routes: Routes = [
   },
   {
     path: 'add-user', component: NewUserComponent
+  },
+  {
+    path: 'admin-profiles', component: ProfilesComponent
+  },
+  {
+    path: 'profile', component: ProfileComponent
+  },
+  {
+    path: 'edit-profile/:id', component: UpdateProfileComponent
   },
 ];
 

@@ -19,8 +19,8 @@ export class PartiesComponent implements OnInit {
   }
 
   show() {
-    this.parties = this.partyService.list().subscribe(party => {
-      this.parties = party;
+    this.parties = this.partyService.listUsersParties().subscribe(parties => {
+      this.parties = parties;
       console.log(this.parties);
     });
   }

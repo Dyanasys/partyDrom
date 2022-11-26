@@ -20,7 +20,7 @@ export class YourPartiesComponent implements OnInit {
   }
 
   show() {
-    this.parties = this.partyService.list().subscribe(party => {
+    this.parties = this.partyService.listYourParties().subscribe(party => {
       this.parties = party;
       console.log(this.parties);
     });

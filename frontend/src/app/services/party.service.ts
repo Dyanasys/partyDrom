@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -12,9 +12,32 @@ export class PartyService {
       'Content-type': 'application/json'
     })
   };
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+  }
+
   list() {
     return this.http.get<any>(this.url + '/api/parties', this.httpOptions);
+  }
+
+  listUsersParties() {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = 1;
+    }
+    return this.http.get<any>(this.url + '/api/users-parties/' + id_user, this.httpOptions);
+  }
+
+  listYourParties() {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = null;
+    }
+    return this.http.get<any>(this.url + '/api/your-parties/' + id_user, this.httpOptions);
   }
 
   add(party: any): Observable<any> {

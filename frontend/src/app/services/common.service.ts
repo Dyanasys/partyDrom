@@ -28,9 +28,47 @@ export class CommonService {
   listUsers() {
     return this.http.get<any>(this.url + '/api/users');
   }
+  listAdminUsers() {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = 1;
+    }
+    return this.http.get<any>(this.url + '/api/admin-users/' + id_user, this.httpOptions);
+  }
   deleteUser(id: any): Observable<any> {
     return this.http.delete<any>(this.url + '/api/user/' + id, this.httpOptions);
   }
+
+  //PROFILES
+  listProfiles() {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = 1;
+    }
+    return this.http.get<any>(this.url + '/api/profiles/' + id_user, this.httpOptions);
+  }
+
+  listProfile(id_user:any = null) {
+    if (id_user==null&&sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else if(id_user==null) {
+      id_user = 1;
+    }
+    return this.http.get<any>(this.url + '/api/profile/' + id_user, this.httpOptions);
+  }
+
+  deleteProfile(id: any): Observable<any> {
+    return this.http.delete<any>(this.url + '/api/profile/' + id, this.httpOptions);
+  }
+
+  updateProfile(id: number, profile: any): Observable<any> {
+    return this.http.put(this.url + '/api/profile/' + id, profile, this.httpOptions);
+  }
+
 
   // list() {
   //   return this.http.get<any>(this.url + '/api/articles');

@@ -7,35 +7,31 @@
   </div>
 </div>
 
-<div *ngIf="users.length&&session.id_user==1; else noParties">
-  <div class="row">
-    <div class="col-md-4 tinyMarginBottom" *ngFor="let user of users" style="margin-bottom:10px!important">
-      <div *ngIf="user.id != session.id_user">
-        <mat-card>
-          <mat-card-title class="mat-h1 light-primary">
-            <div>
-              {{user.name}}
-            </div>
-          </mat-card-title>
-          <mat-divider></mat-divider>
-          <div class="v-spacing"></div>
-          <mat-card-content class="tinymargin">
-            <div class="row" style="margin-bottom: 1em">
-              {{user.email}}
-            </div>
-            <div class="row" style="margin-bottom: 1em">
-              {{user.password}}
-            </div>
-          </mat-card-content>
-          <mat-card-actions>
-            <div>
-              <button type="button" mat-mini-fab color="primary" routerLink="/edit-user/{{user.id}}">Edit</button>
-              <button type="button" mat-button color="warn" (click)="delete(user.id)" routerLink="/">Delete</button>
-            </div>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
+<div class="row" *ngIf="users.length&&session.id_user==1; else noParties">
+  <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let user of users">
+    <mat-card>
+      <mat-card-title class="mat-h1 light-primary">
+        <div>
+          {{user.name}}
+        </div>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <div class="v-spacing"></div>
+      <mat-card-content class="tinymargin">
+        <div class="row" style="margin-bottom: 1em">
+          {{user.email}}
+        </div>
+        <div class="row" style="margin-bottom: 1em">
+          {{user.password}}
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div>
+          <button type="button" mat-mini-fab color="primary" routerLink="/edit-user/{{user.id}}">Edit</button>
+          <button type="button" mat-button color="warn" (click)="delete(user.id)" routerLink="/">Delete</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
 <ng-template #noParties>

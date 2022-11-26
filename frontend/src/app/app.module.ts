@@ -29,6 +29,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AdminPartiesComponent } from './party/admin-parties/admin-parties.component';
 import { UsersComponent } from './user/users/users.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { ProfileComponent } from './profile/profile/profile.component';
+import { RequestsComponent } from './request/requests/requests.component';
+import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
+import { ProfilesComponent } from './profile/profiles/profiles.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { UpdateUserComponent } from './user/update-user/update-user.component';
     YourPartiesComponent,
     AdminPartiesComponent,
     UsersComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ProfileComponent,
+    RequestsComponent,
+    UpdateProfileComponent,
+    ProfilesComponent
   ],
   imports: [
     BrowserModule,
