@@ -33,6 +33,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { RequestsComponent } from './request/requests/requests.component';
 import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 import { ProfilesComponent } from './profile/profiles/profiles.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ProfilesComponent } from './profile/profiles/profiles.component';
     MatMenuModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,11 +3,13 @@
     <h1 class="myTitle light-primary">Encuentra plan!
       <mat-icon>favorite</mat-icon>
     </h1>
-    <mat-autocomplete #auto="matAutocomplete">
-      <!--      <mat-option *ngFor="let option of options" [value]="option">-->
-      <!--        {{option}}-->
-      <!--      </mat-option>-->
-    </mat-autocomplete>
+    <mat-form-field appearance="fill" *ngIf="locations&&locations.length">
+      <mat-label>ciudad</mat-label>
+      <mat-select>
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </div>
 

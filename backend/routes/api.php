@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\ArticleResource;
+use App\Http\Resources\locationResource;
 use App\Http\Resources\partyResource;
 use App\Http\Resources\profileResource;
 use App\Http\Resources\requestResource;
 use App\Http\Resources\userResource;
 use App\Models\Article;
+use App\Models\Location;
 use App\Models\Party;
 use App\Models\Profile;
 use App\Models\User;
@@ -100,11 +103,11 @@ Route::post('/requests', [RequestController::class, 'store']);
 
 //LOCATIONS
 Route::get('/location/{id}', function ($id) {
-    return new PartyResource(Party::query()->findOrFail($id));
+    return new LocationResource(Location::query()->findOrFail($id));
 });
 Route::get('/locations', function () {
-    return PartyResource::collection(Party::all());
+    return LocationResource::collection(Location::all());
 });
-Route::put('/location/{id}', [PartyController::class, 'update']);
-Route::delete('/location/{id}', [PartyController::class, 'destroy']);
-Route::post('/locations', [PartyController::class, 'store']);
+Route::put('/location/{id}', [LocationController::class, 'update']);
+Route::delete('/location/{id}', [LocationController::class, 'destroy']);
+Route::post('/locations', [LocationController::class, 'store']);
