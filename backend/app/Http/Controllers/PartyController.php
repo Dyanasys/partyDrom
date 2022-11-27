@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Party;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PartyController extends Controller
 {
@@ -19,12 +20,71 @@ class PartyController extends Controller
 
     public function listUsersParties($id_user)
     {
-        $data = Party::select('parties.*', 'locations.name as location_name', 'profiles.public_name')->join(
+        $data = Party::select(
+            'parties.*',
+            'locations.name as location_name',
+            'profiles.public_name',
+            'requests.id as id_request',
+            'requests.canceled as request_canceled',
+            'requests.accepted as request_accepted',
+            'requests.pending as request_pending'
+        )->join(
             'locations',
             'parties.id_location',
             '=',
             'locations.id'
-        )->join('profiles', 'parties.id_user', '=', 'profiles.id_user')->where("parties.id_user", "<>", $id_user)->get();
+        )->join('profiles', 'parties.id_user', '=', 'profiles.id_user')->leftJoin(
+            'requests',
+            function ($join) use ($id_user) {
+                $join->on("parties.id", "requests.id_party");
+                $join->where("requests.id_user", $id_user);
+            }
+        )->where("parties.id_user", "<>", $id_user)->get();
+        return $data;
+    }
+
+    public function listYourParties($id_user)
+    {
+        $data = Party::select(
+            'parties.*',
+            'locations.name as location_name',
+            'requests.id as id_request',
+            'requests.canceled as request_canceled',
+            'requests.accepted as request_accepted',
+            'requests.pending as request_pending'
+        )->join(
+            'locations',
+            'parties.id_location',
+            '=',
+            'locations.id'
+        )->leftJoin(
+            'requests',
+            function ($join) use ($id_user) {
+                $join->on("parties.id", "requests.id_party");
+                $join->where("requests.id_user",'<>', $id_user);
+            }
+        )->where("parties.id_user", "=", $id_user)->get();
+        return $data;
+    }
+
+    public function showParty($id_party)
+    {
+        $data = Party::select(
+            'parties.*',
+            'locations.name as location_name',
+            'profiles.public_name',
+            'requests.id as id_request',
+            'requests.canceled as request_canceled',
+            'requests.accepted as request_accepted',
+            'requests.pending as request_pending'
+        )->join(
+            'locations',
+            'parties.id_location',
+            '=',
+            'locations.id'
+        )->join('profiles', 'parties.id_user', '=', 'profiles.id_user')->leftJoin('requests', function ($join) {
+            $join->on("parties.id", "requests.id_party");
+        })->where("parties.id", "=", $id_party)->first();
         return $data;
     }
 

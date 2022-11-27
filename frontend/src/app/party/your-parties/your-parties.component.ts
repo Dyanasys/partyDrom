@@ -20,7 +20,13 @@ export class YourPartiesComponent implements OnInit {
   }
 
   show() {
-    this.parties = this.partyService.listYourParties().subscribe(party => {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = null;
+    }
+    this.parties = this.partyService.listYourParties(id_user).subscribe(party => {
       this.parties = party;
       console.log(this.parties);
     });

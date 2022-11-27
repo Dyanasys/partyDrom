@@ -2,27 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Request;
+use Illuminate\Http\Response;
+
+//use Illuminate\Http\Request;
 
 class RequestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         return Request::all();
     }
 
+
+    public function listUserRequests($id_user)
+    {
+        $data = Request::select('requests.*','parties.id as id_party', 'parties.title', 'parties.meeting_details', 'parties.phone_contact','parties.address')
+            ->join('parties','requests.id_party','=','parties.id')
+            ->where("requests.id_user", "=", $id_user)->get();
+        return $data;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(\Illuminate\Http\Request $request)
     {
         return Request::create($request->all());
     }
@@ -30,8 +42,8 @@ class RequestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -41,11 +53,11 @@ class RequestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(\Illuminate\Http\Request $request, $id)
     {
         if (Request::where('id', $id)->exists()) {
             $myrequest = Request::find($id);
@@ -59,11 +71,23 @@ class RequestController extends Controller
         }
     }
 
+    public function cancel($id): \Illuminate\Http\JsonResponse
+    {
+        if (Request::where('id', $id)->exists()) {
+            $myrequest = Request::find($id);
+            $myrequest->canceled = 1;
+            $myrequest->save();
+            return response()->json(['message' => 'Request canceled succefully :D'], 200);
+        } else {
+            return response()->json(['message' => 'Request not found :('], 400);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {

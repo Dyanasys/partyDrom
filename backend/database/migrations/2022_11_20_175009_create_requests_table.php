@@ -17,6 +17,8 @@ class CreateRequestsTable extends Migration
             $table->id()->autoIncrement();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_party');
+            $table->tinyInteger('canceled');
+            $table->tinyInteger('accepted');
             $table->timestamps();
         });
     }

@@ -1,51 +1,40 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {PartyService} from "../../services/party.service";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CommonService} from "../../services/common.service";
 
 @Component({
-  selector: 'app-parties',
-  templateUrl: './parties.component.html',
-  styleUrls: ['./parties.component.scss']
+  selector: 'app-party',
+  templateUrl: './party.component.html',
+  styleUrls: ['./party.component.scss']
 })
-export class PartiesComponent implements OnInit {
-  parties: any; //esta variable se pasa al html
+export class PartyComponent implements OnInit {
+  party: any; //esta variable se pasa al html
   session: any;
-  locations: any;
   myrequest: any;
+  id: any;
 
   constructor(private partyService: PartyService, private route: ActivatedRoute, private router: Router, private commonService: CommonService) {
   }
 
   ngOnInit(): void {
     this.session = sessionStorage;
-    this.getLocations();
     this.show();
   }
 
   show() {
-    let id_user;
-    if (sessionStorage['id_user']) {
-      id_user = sessionStorage['id_user'];
-    } else {
-      id_user = null;
-    }
-    this.parties = this.partyService.listUsersParties(id_user).subscribe(parties => {
-      this.parties = parties;
-      console.log(this.parties);
-    });
-  }
-
-  getLocations() {
-    this.locations = this.commonService.listLocations().subscribe(locations => {
-      this.locations = locations;
+    const routeParams = this.route.snapshot.paramMap;
+    this.id = Number(routeParams.get('id'));
+    this.party = this.partyService.find(this.id).subscribe(party => {
+      this.party = party;
+      console.log(this.party);
     });
   }
 
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
       this.show();
-      console.log(this.parties);
+      console.log(this.party);
     });
   }
 
@@ -60,11 +49,14 @@ export class PartiesComponent implements OnInit {
     this.commonService.createRequest(this.myrequest as any).subscribe((request: any) => {
       this.myrequest = request
     });
+
   }
 
   cancelRequest(id_request: string) {
     this.commonService.cancelRequest(id_request as any).subscribe((request: any) => {
       this.myrequest = request
     });
+
   }
+
 }

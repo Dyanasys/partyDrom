@@ -34,6 +34,7 @@ import { RequestsComponent } from './request/requests/requests.component';
 import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 import { ProfilesComponent } from './profile/profiles/profiles.component';
 import {MatSelectModule} from "@angular/material/select";
+import { PartyComponent } from './party/party/party.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {MatSelectModule} from "@angular/material/select";
     ProfileComponent,
     RequestsComponent,
     UpdateProfileComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    PartyComponent
   ],
   imports: [
     BrowserModule,

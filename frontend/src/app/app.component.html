@@ -6,7 +6,7 @@
     <button mat-menu-item routerLink="/">Encuentra plan!</button>
     <div *ngIf="session.id_user;">
       <button mat-menu-item routerLink="/your-parties">Tus fiestas</button>
-      <button mat-menu-item routerLink="/requests">Tus solicitudes</button>
+      <button mat-menu-item routerLink="/user-requests">Tus solicitudes</button>
     </div>
   </mat-menu>
   <button mat-button routerLink="/">
@@ -25,7 +25,6 @@
       </div>
     </div>
   </button>
-
   <mat-menu #loginMenu="matMenu">
     <div *ngIf="session.id_user; else notUser">
       <button mat-menu-item routerLink="/profile">Tu perfil</button>

@@ -1,1 +1,69 @@
-<p>requests works!</p>
+<div class="row">
+  <div class="space-between">
+    <h1 class="myTitle light-primary">Tus solicitudes!
+      <mat-icon>favorite</mat-icon>
+    </h1>
+    <div *ngIf="session.id_user">
+      <mat-form-field appearance="fill" *ngIf="locations&&locations.length">
+        <mat-label>ciudad</mat-label>
+        <mat-select>
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="requests.length&&session.id_user; else noParties">
+  <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let request of requests">
+    <mat-card>
+      <mat-card-title class="mat-h1 light-primary">
+        <div>
+          {{request.title}}
+        </div>
+      </mat-card-title>
+      <mat-card-content class="tinymargin">
+        <button type="button" mat-button color="primary" routerLink="/party/{{request.id_party}}">ver fiesta</button>
+      </mat-card-content>
+      <mat-card-actions>
+        <div *ngIf="request.accepted else noRequest">
+          <button type="button" mat-fab color="primary">Aceptada!</button>
+          <div>
+            <h3>Detalles: </h3>
+            <div><span class="light-primary">Teléfono de contacto:</span> {{request.phone_contact}}</div>
+            <div class="v-spacing"></div>
+            <div><span class="light-primary">Dirección:</span> {{request.address}}</div>
+            <div class="v-spacing"></div>
+            <div><span class="light-primary">Observaciones:</span> {{request.meeting_details}}</div>
+          </div>
+        </div>
+        <ng-template #noRequest>
+          <button type="button" mat-fab color="accent">pendiente</button>
+        </ng-template>
+      </mat-card-actions>
+      <mat-card-footer>
+        <mat-divider></mat-divider>
+
+        <div class="tinymargin">{{request.id_user}}</div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+<ng-template #noParties>
+  <div *ngIf="!session.id_user; else isLogin">
+    <div class="v-spacing"></div>
+    <h1 class="primary">Login para ver las solicitudes</h1>
+    <button mat-stroked-button routerLink="/login">Login!</button>
+    <div class="v-spacing"></div>
+    <mat-divider></mat-divider>
+    <div class="v-spacing"></div>
+    <h1 class="primary">no estás registrado?</h1>
+    <button mat-stroked-button routerLink="/signup">Registrate!</button>
+  </div>
+  <ng-template #isLogin>
+    <mat-spinner></mat-spinner>
+    <h1 class="primary">Ups, parece que no hay plan :(</h1>
+  </ng-template>
+</ng-template>
+

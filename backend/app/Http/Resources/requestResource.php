@@ -17,7 +17,9 @@ class requestResource extends JsonResource
         return [
             'id' => $this->id,
             'id_user' => $this->id_user,
-            'id_party' => $this->id_party
+            'id_party' => $this->id_party,
+            'canceled' => $this->canceled,
+            'accepted' => $this->accepted
         ];
     }
 }

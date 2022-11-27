@@ -20,7 +20,13 @@ export class AdminPartiesComponent implements OnInit {
   }
 
   show() {
-    this.parties = this.partyService.listUsersParties().subscribe(party => {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = 1;
+    }
+    this.parties = this.partyService.listUsersParties(id_user).subscribe(party => {
       this.parties = party;
     });
   }

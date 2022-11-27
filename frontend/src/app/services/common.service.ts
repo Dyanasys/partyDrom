@@ -89,7 +89,18 @@ export class CommonService {
   listLocations() {
     return this.http.get<any>(this.url + '/api/locations/', this.httpOptions);
   }
+  //request
+  createRequest(myrequest: any): Observable<any> {
+    return this.http.post<any>(this.url + '/api/requests', myrequest, this.httpOptions);
+  }
 
+  cancelRequest(id_request: any): Observable<any> {
+    return this.http.put(this.url + '/api/cancel-request/'+ id_request, this.httpOptions);
+  }
+
+  getUserRequests(id_user: string) {
+    return this.http.get(this.url + '/api/user-requests/'+ id_user, this.httpOptions);
+  }
 
   // list() {
   //   return this.http.get<any>(this.url + '/api/articles');

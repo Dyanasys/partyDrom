@@ -1,22 +1,13 @@
 <div class="row">
   <div class="space-between">
-    <h1 class="myTitle light-primary">Encuentra plan!
+    <h1 class="myTitle light-primary">{{party.title}}!
       <mat-icon>favorite</mat-icon>
     </h1>
-    <div *ngIf="session.id_user">
-      <mat-form-field appearance="fill" *ngIf="locations&&locations.length">
-        <mat-label>ciudad</mat-label>
-        <mat-select>
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
   </div>
 </div>
 
-<div class="row" *ngIf="parties.length&&session.id_user; else noParties">
-  <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let party of parties">
+<div class="row" *ngIf="party&&session.id_user; else noParties">
+  <div class="col-md-8 tinyMarginBottom" style="margin-bottom:10px!important">
     <mat-card>
       <mat-card-title class="mat-h1 light-primary">
         <div>
@@ -42,12 +33,6 @@
           <div class="spacing"></div>
           Anfitrión:
           <button mat-button class="light-primary " routerLink="/profile/{{party.id_user}}">
-            <mat-icon>person</mat-icon>
-            {{party.public_name}}</button>
-        </div>
-        <div class="flex-center">
-          Anfitrión:
-          <button mat-button class="light-primary" routerLink="/profile/{{party.id_user}}">
             <mat-icon>person</mat-icon>
             {{party.public_name}}</button>
         </div>
@@ -113,3 +98,4 @@
     <h1 class="primary">Ups, parece que no hay plan :(</h1>
   </ng-template>
 </ng-template>
+

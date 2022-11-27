@@ -20,23 +20,11 @@ export class PartyService {
     return this.http.get<any>(this.url + '/api/parties', this.httpOptions);
   }
 
-  listUsersParties() {
-    let id_user;
-    if (sessionStorage['id_user']) {
-      id_user = sessionStorage['id_user'];
-    } else {
-      id_user = 1;
-    }
+  listUsersParties(id_user : any) {
     return this.http.get<any>(this.url + '/api/users-parties/' + id_user, this.httpOptions);
   }
 
-  listYourParties() {
-    let id_user;
-    if (sessionStorage['id_user']) {
-      id_user = sessionStorage['id_user'];
-    } else {
-      id_user = null;
-    }
+  listYourParties(id_user : any) {
     return this.http.get<any>(this.url + '/api/your-parties/' + id_user, this.httpOptions);
   }
 

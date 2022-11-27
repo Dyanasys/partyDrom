@@ -54,9 +54,8 @@ Route::get('/parties', function () {
 //    return PartyResource::collection(Party::where("id_user", "<>", $id_user)->get());
 //});
 Route::get('/users-parties/{id_user}',[PartyController::class, 'listUsersParties']);
-Route::get('/your-parties/{id_user}', function ($id_user) {
-    return PartyResource::collection(Party::where("id_user", "=", $id_user)->get());
-});
+Route::get('/your-parties/{id_user}', [PartyController::class, 'listYourParties']);
+Route::get('/party/{id}', [PartyController::class, 'showParty']);
 Route::put('/party/{id}', [PartyController::class, 'update']);
 Route::delete('/party/{id}', [PartyController::class, 'destroy']);
 Route::post('/parties', [PartyController::class, 'store']);
@@ -97,7 +96,9 @@ Route::get('/request/{id}', function ($id) {
 Route::get('/requests', function () {
     return RequestResource::collection(App\Models\Request::all());
 });
+Route::get('/user-requests/{id_user}', [RequestController::class, 'listUserRequests']);
 Route::put('/request/{id}', [RequestController::class, 'update']);
+Route::put('/cancel-request/{id}', [RequestController::class, 'cancel']);
 Route::delete('/request/{id}', [RequestController::class, 'destroy']);
 Route::post('/requests', [RequestController::class, 'store']);
 
