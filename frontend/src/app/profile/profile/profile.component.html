@@ -1,8 +1,15 @@
 <div class="row">
   <div class="space-between">
-    <h1 class="myTitle light-primary">Mi perfil
-      <mat-icon>favorite</mat-icon>
-    </h1>
+    <div *ngIf="profile.id_user == session.id_user else oUser">
+      <h1 class="myTitle light-primary">Mi perfil
+        <mat-icon>favorite</mat-icon>
+      </h1>
+    </div>
+    <ng-template #oUser>
+      <h1 class="myTitle light-primary">Perfil de {{profile.public_name}}
+        <mat-icon>favorite</mat-icon>
+      </h1>
+    </ng-template>
   </div>
 </div>
 
@@ -56,8 +63,10 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <div>
-          <button color="primary" mat-mini-fab routerLink="/edit-profile/{{profile.id}}" type="button">Edit</button>
+        <div *ngIf="profile.id_user == session.id_user">
+          <div>
+            <button color="primary" mat-mini-fab routerLink="/edit-profile/{{profile.id}}" type="button">Edit</button>
+          </div>
         </div>
       </mat-card-actions>
     </mat-card>

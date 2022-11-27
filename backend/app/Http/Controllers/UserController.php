@@ -70,6 +70,7 @@ class UserController extends Controller
         $id = $user->id;
         $profile = new Profile;
         $profile->id_user = $id;
+        $profile->public_name = $user->name;
         $profile->save();
         return $user;
     }

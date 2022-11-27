@@ -47,9 +47,10 @@ Route::get('/party/{id}', function ($id) {
 Route::get('/parties', function () {
     return PartyResource::collection(Party::all());
 });
-Route::get('/users-parties/{id_user}', function ($id_user) {
-    return PartyResource::collection(Party::where("id_user", "<>", $id_user)->get());
-});
+//Route::get('/users-parties/{id_user}', function ($id_user) {
+//    return PartyResource::collection(Party::where("id_user", "<>", $id_user)->get());
+//});
+Route::get('/users-parties/{id_user}',[PartyController::class, 'listUsersParties']);
 Route::get('/your-parties/{id_user}', function ($id_user) {
     return PartyResource::collection(Party::where("id_user", "=", $id_user)->get());
 });

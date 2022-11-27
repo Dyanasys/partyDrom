@@ -25,11 +25,15 @@
           {{party.description}}
         </div>
         <mat-divider></mat-divider>
+        <div class="flex-center">
+          Anfitrión:
+          <button mat-button class="light-primary" routerLink="/profile/{{party.id_user}}"><mat-icon>person</mat-icon>{{party.public_name}}</button>
+        </div>
         <div class="row purple medium-y-margin flex-center">
           <h1 class="mat-h1"><span class="big-font marginTop">{{party.vacancies}}</span> vacantes!</h1>
         </div>
         <div class="row purple">
-          Localidad: {{party.id_location}}
+          Localidad: {{party.location_name}}
         </div>
         <div class="row purple">
           Fecha: {{party.date}}
@@ -69,9 +73,7 @@
       </mat-card-actions>
       <mat-card-footer>
         <mat-divider></mat-divider>
-        <div *ngIf="session.id_user">
-          id user session: {{session.id_user}}
-        </div>
+
         <div class="tinymargin">{{party.id_user}}</div>
       </mat-card-footer>
     </mat-card>

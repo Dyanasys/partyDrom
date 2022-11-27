@@ -17,6 +17,17 @@ class PartyController extends Controller
         return Party::all();
     }
 
+    public function listUsersParties($id_user)
+    {
+        $data = Party::select('parties.*', 'locations.name as location_name', 'profiles.public_name')->join(
+            'locations',
+            'parties.id_location',
+            '=',
+            'locations.id'
+        )->join('profiles', 'parties.id_user', '=', 'profiles.id_user')->where("parties.id_user", "<>", $id_user)->get();
+        return $data;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

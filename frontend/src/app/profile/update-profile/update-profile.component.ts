@@ -27,9 +27,15 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   update(){
-    this.commonService.updateProfile(this.id, this.profile).subscribe((res) => {
-      this.router.navigateByUrl('/profile').then(r => console.log(res));
-    });
+    if(this.profile.public_name.trim()){
+      this.commonService.updateProfile(this.id, this.profile).subscribe((res) => {
+        this.router.navigateByUrl('/profile').then(r => console.log(res));
+      });
+    }else{
+      alert('El nombre público no puede estar vacío');
+      this.router.navigateByUrl('/edit-profile/'+ this.id).then(r => console.log(r));
+    }
+
   }
 
   delete(id: any) {

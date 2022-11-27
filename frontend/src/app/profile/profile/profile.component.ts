@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
 
   profile: any; //esta variable se pasa al html
   session: any;
+  id:any;
   constructor(private commonService: CommonService, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -21,7 +22,14 @@ export class ProfileComponent implements OnInit {
   }
 
   show() {
-    this.profile = this.commonService.findProfile().subscribe(profile => {
+    const routeParams = this.route.snapshot.paramMap;
+    if(routeParams.get('id')){
+      this.id = Number(routeParams.get('id'));
+    }else{
+      this.id = sessionStorage['id_user'];
+    }
+
+    this.profile = this.commonService.findProfile(this.id).subscribe(profile => {
       this.profile = profile;
     });
   }
