@@ -22,8 +22,11 @@
         </div>
         <mat-divider></mat-divider>
         <div class="flex-center">
+          <div *ngIf="party.pending_request==1" class="v-margin">
+            <button type="button" mat-fab color="warn">Tienes solicitudes pendientes!</button>
+          </div>
           <div *ngIf="party.id_request" class="v-margin">
-            <button type="button" mat-fab color="primary">Tienes solicitudes pendientes!</button>
+            <button type="button" mat-fab color="primary">Tienes solicitudes!</button>
           </div>
           <div class="spacing"></div>
           <div class="spacing"></div>
@@ -75,7 +78,6 @@
         <div>
           <button color="primary" mat-mini-fab routerLink="/edit/{{party.id}}" type="button">Edit</button>
           <button (click)="delete(party.id)" color="warn" mat-button routerLink="/" type="button">Delete</button>
-          <button color="warn" mat-fab type="button">Tienes Solicitudes!</button>
         </div>
       </mat-card-actions>
     </mat-card>
