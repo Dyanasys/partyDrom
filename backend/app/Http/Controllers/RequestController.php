@@ -28,6 +28,15 @@ class RequestController extends Controller
         return $data;
     }
 
+    public function listPartyRequests($id_party)
+    {
+        $data = Request::select('requests.*','parties.id as id_party', 'parties.title', 'parties.meeting_details', 'parties.phone_contact','parties.address', 'profiles.public_name', 'profiles.id as id_profile')
+            ->join('parties','requests.id_party','=','parties.id')
+            ->join('profiles','requests.id_user','=','profiles.id_user')
+            ->where("requests.id_party", "=", $id_party)->get();
+        return $data;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

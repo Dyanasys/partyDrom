@@ -14,6 +14,7 @@ import {ProfilesComponent} from "./profile/profiles/profiles.component";
 import {UpdateProfileComponent} from "./profile/update-profile/update-profile.component";
 import {RequestsComponent} from "./request/requests/requests.component";
 import {PartyComponent} from "./party/party/party.component";
+import {PartyRequestsComponent} from "./request/party-requests/party-requests.component";
 
 const routes: Routes = [
   {
@@ -63,6 +64,9 @@ const routes: Routes = [
   },
   {
     path: 'user-requests', component: RequestsComponent
+  },
+  {
+    path: 'party-requests/:id', component: PartyRequestsComponent
   },
 ];
 

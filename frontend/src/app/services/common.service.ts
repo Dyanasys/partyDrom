@@ -102,6 +102,10 @@ export class CommonService {
     return this.http.get(this.url + '/api/user-requests/'+ id_user, this.httpOptions);
   }
 
+  getPartyRequests(id_party: string) {
+    return this.http.get(this.url + '/api/party-requests/'+ id_party, this.httpOptions);
+  }
+
   // list() {
   //   return this.http.get<any>(this.url + '/api/articles');
   // }

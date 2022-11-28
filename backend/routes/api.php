@@ -97,6 +97,7 @@ Route::get('/requests', function () {
     return RequestResource::collection(App\Models\Request::all());
 });
 Route::get('/user-requests/{id_user}', [RequestController::class, 'listUserRequests']);
+Route::get('/party-requests/{id_party}', [RequestController::class, 'listPartyRequests']);
 Route::put('/request/{id}', [RequestController::class, 'update']);
 Route::put('/cancel-request/{id}', [RequestController::class, 'cancel']);
 Route::delete('/request/{id}', [RequestController::class, 'destroy']);
