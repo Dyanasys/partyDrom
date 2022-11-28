@@ -45,26 +45,19 @@ class PartyController extends Controller
 
     public function listYourParties($id_user)
     {
-        $data = Party::select(
-            'parties.*',
-            'locations.name as location_name',
-            'requests.id as id_request',
-            'requests.canceled as request_canceled',
-            'requests.accepted as request_accepted',
-            'requests.pending as request_pending'
-        )->join(
-            'locations',
-            'parties.id_location',
-            '=',
-            'locations.id'
-        )->leftJoin(
-            'requests',
-            function ($join) use ($id_user) {
-                $join->on("parties.id", "requests.id_party");
-                $join->where("requests.id_user",'<>', $id_user);
-            }
-        )->where("parties.id_user", "=", $id_user)->get();
-        return $data;
+        $query = DB::select(
+            "select p.*,
+        l.name as location_name,
+        r.id_request,
+        r.pending_request
+        FROM parties p
+        join locations l on p.id_location = l.id
+        LEFT JOIN (SELECT rr.id AS id_request, rr.pending AS pending_request, rr.id_user AS id_user_request, rr.id_party AS id_party_request from requests rr right JOIN parties pp ON rr.id_party = pp.id WHERE rr.id_user <> $id_user ORDER BY rr.pending DESC LIMIT 1) r
+        ON r.id_party_request = p.id
+        where p.id_user = $id_user"
+        );
+
+        return $query;
     }
 
     public function showParty($id_party)
