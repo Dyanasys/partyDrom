@@ -1,5 +1,15 @@
 <hr class="my-4">
 <div *ngIf="profile">
+  <div *ngIf="session.is_admin == 1 else noAdmin">
+    <h1 class="myTitle light-primary">Nuevo usuario
+      <mat-icon>favorite</mat-icon>
+    </h1>
+  </div>
+  <ng-template #noAdmin>
+    <h1 class="myTitle light-primary">Completa tu perfil!
+      <mat-icon>favorite</mat-icon>
+    </h1>
+  </ng-template>
   <div class="row">
     <div class="col-md-6 col-12">
       <mat-form-field>

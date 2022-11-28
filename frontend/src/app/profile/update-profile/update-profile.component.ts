@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonService} from "../../services/common.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -11,6 +11,7 @@ export class UpdateProfileComponent implements OnInit {
   profile: any; //esta variable se pasa al html
   session: any;
   id: any;
+
   constructor(private commonService: CommonService, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -20,20 +21,30 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   show() {
-    this.profile = this.commonService.findProfile().subscribe(profile => {
+    const routeParams = this.route.snapshot.paramMap;
+    if (routeParams.get('id')) {
+      this.id = Number(routeParams.get('id'));
+    } else {
+      this.id = sessionStorage['id_user'];
+    }
+    this.profile = this.commonService.findProfile(this.id).subscribe(profile => {
       this.profile = profile;
       this.id = profile.id;
     });
   }
 
-  update(){
-    if(this.profile.public_name.trim()){
+  update() {
+    if (this.profile.public_name.trim()) {
       this.commonService.updateProfile(this.id, this.profile).subscribe((res) => {
-        this.router.navigateByUrl('/profile').then(r => console.log(res));
+        if (sessionStorage['is_admin'] == 1 && sessionStorage['is_admin'] != this.id) {
+          this.router.navigateByUrl('/admin-profiles').then(r => console.log(res));
+        } else {
+          this.router.navigateByUrl('/profile').then(r => console.log(res));
+        }
       });
-    }else{
+    } else {
       alert('El nombre público no puede estar vacío');
-      this.router.navigateByUrl('/edit-profile/'+ this.id).then(r => console.log(r));
+      this.router.navigateByUrl('/edit-profile/' + this.id).then(r => console.log(r));
     }
 
   }

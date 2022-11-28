@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-       $user = User::create($request->all());
+        $user = User::create($request->all());
 //        $id = $this->create($request)->id;
         $id = $user->id;
         $profile = new Profile;
@@ -112,6 +112,30 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->password = $request->password;
 
+            $user->save();
+            return response()->json(['message' => 'user updated succefully :D'], 200);
+        } else {
+            return response()->json(['message' => 'user not found :('], 400);
+        }
+    }
+
+    public function makeAdmin($id)
+    {
+        if (User::where('id', $id)->exists()) {
+            $user = User::find($id);
+            $user->is_admin = 1;
+            $user->save();
+            return response()->json(['message' => 'user updated succefully :D'], 200);
+        } else {
+            return response()->json(['message' => 'user not found :('], 400);
+        }
+    }
+
+    public function makeNormal($id)
+    {
+        if (User::where('id', $id)->exists()) {
+            $user = User::find($id);
+            $user->is_admin = 0;
             $user->save();
             return response()->json(['message' => 'user updated succefully :D'], 200);
         } else {

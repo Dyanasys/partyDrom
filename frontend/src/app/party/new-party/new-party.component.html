@@ -1,4 +1,7 @@
 <hr class="my-4">
+<h1 class="myTitle light-primary">Nueva fiesta
+  <mat-icon>favorite</mat-icon>
+</h1>
 <div class="row">
   <div class="col-md-6 col-12">
     <mat-form-field>
@@ -37,19 +40,19 @@
   </div>
   <div class="col-md-6 col-12">
     <mat-form-field>
-      <mat-label>dirección</mat-label>
+      <mat-label>dirección *solo visible a invitados</mat-label>
       <input matInput type="text" #address id="address" [value]="fakeDirection">
     </mat-form-field>
   </div>
   <div class="col-md-6 col-12">
     <mat-form-field>
-      <mat-label>detalles del encuentro</mat-label>
+      <mat-label>detalles del encuentro *solo visible a invitados</mat-label>
       <input matInput type="text" #meeting_details id="meeting_details" [value]="fakeDetails">
     </mat-form-field>
   </div>
   <div class="col-md-6 col-12">
     <mat-form-field>
-      <mat-label>teléfono de contacto</mat-label>
+      <mat-label>teléfono de contacto *solo visible a invitados</mat-label>
       <input matInput type="text" #phone_contact id="phone_contact" [value]="fakePhone">
     </mat-form-field>
   </div>

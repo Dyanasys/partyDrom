@@ -13,10 +13,10 @@ export class NewPartyComponent implements OnInit {
   aChecked = true;
   sChecked = false;
   fakeVacancies = 2;
-  fakeDirection = "calle fake, n21";
+  fakeDirection = "FAKE ADDRESS";
   fakeTitle = "FAKE PARTY";
-  fakeDescription = "Mis amigos y yo vamos a celebrar una fiesta en la finca de mis abuelos";
-  fakeDetails = "Primero quedaremos en el centro del pueblo y desde allí nos vamos en coche";
+  fakeDescription = "FAKE DESCRIPTION";
+  fakeDetails = "FAKE DETAILS";
   fakePhone = "666123123";
   party: any;
   // parties: any;
@@ -48,11 +48,17 @@ export class NewPartyComponent implements OnInit {
 
     this.partyService.add(this.party as any).subscribe(party => {
       this.party = party
-    });
+      this.router.navigateByUrl('/your-parties').then(r => {
+        console.log('party added :)')
+      });
+    },error =>{
+      alert('parece que te ha faltado algún dato, vuelve a intentarlo');
+      this.router.navigateByUrl('/add').then(r => {
+        console.log('party added :)')
+      });
+    } );
 
-    this.router.navigateByUrl('/').then(r => {
-      console.log('party added :)')
-    });
+
   }
 
 }

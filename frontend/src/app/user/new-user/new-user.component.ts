@@ -24,25 +24,21 @@ export class NewUserComponent implements OnInit {
       'email': email,
       'password': password
     }
-
     this.commonService.addUser(this.user as any).subscribe(user => {
-      this.user = user;
-      let id_user= user.id;
-      let user_name= user.name;
-      let is_admin= user.is_admin;
-      sessionStorage.setItem('id_user', id_user);
-      sessionStorage.setItem('is_admin', is_admin);
-      sessionStorage.setItem('user_name', user_name);
-      this.session = sessionStorage;
-      if (user.is_admin == 1) {
-        this.router.navigateByUrl('/').then(r => {
+      if(sessionStorage['is_admin']){
+        this.router.navigateByUrl('/admin-users').then(r => {
           console.log('user added :)')
         });
-      } else {
-        this.router.navigateByUrl('/edit-profile/' + user.id_user).then(r => {
+      }else{
+        sessionStorage.setItem('id_user', user.id);
+        sessionStorage.setItem('is_admin', user.name);
+        sessionStorage.setItem('user_name', user.is_admin);
+        this.session = sessionStorage;
+        this.router.navigateByUrl('/edit-profile/' + user.id).then(r => {
           console.log('user added :)')
         });
       }
+      this.user = user;
     }, error => {
       alert("datos incorrectos :(");
       console.log(error);

@@ -1,1 +1,74 @@
-<p>profiles works!</p>
+<div class="row">
+  <div class="space-between">
+      <h1 class="myTitle light-primary">Admin perfiles
+        <mat-icon>favorite</mat-icon>
+      </h1>
+  </div>
+</div>
+
+<div class="row" *ngIf="profiles.length else noParties">
+  <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let profile of profiles">
+    <mat-card>
+      <mat-card-title class="mat-h1 light-primary">
+        <div class="flex-center">
+          <mat-icon style="transform: scale(2);">person</mat-icon>
+          <div class="spacing"></div>
+          <div>
+            {{profile.public_name}}
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content class="tinymargin">
+        <div class="row purple">
+          Edad: {{profile.age}}
+        </div>
+        <div class="v-spacing"></div>
+        <mat-divider></mat-divider>
+        <div class="row purple medium-y-margin flex-center">
+          <h1 class="mat-h1"> {{profile.description}}</h1>
+        </div>
+        <div class="row">
+          <div *ngIf="profile.alcohol_pref==true; else elseBlock2" class="green">
+            <mat-icon>check_circle</mat-icon>
+            Alcohol
+          </div>
+          <ng-template #elseBlock2>
+            <div class="red">
+              <mat-icon>cancel</mat-icon>
+              Alcohol
+            </div>
+          </ng-template>
+        </div>
+        <div class="row">
+          <div *ngIf="profile.smoke_pref==true; else elseBlock" class="green">
+            <mat-icon>check_circle</mat-icon>
+            Tabaco
+          </div>
+          <ng-template #elseBlock>
+            <div class="red">
+              <mat-icon>cancel</mat-icon>
+              Tabaco
+            </div>
+          </ng-template>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div *ngIf="session.is_admin == 1">
+          <div>
+            <button color="primary" mat-mini-fab routerLink="/edit-profile/{{profile.id}}" type="button">Edit</button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<ng-template #noParties>
+  <div *ngIf="!session.id_user; else isLogin">
+    <h3 class="primary">Logueate para ver las fiestas</h3>
+  </div>
+  <ng-template #isLogin>
+    <h1 class="primary">Ups, parece que ha habido un problema :(</h1>
+  </ng-template>
+</ng-template>
+
+

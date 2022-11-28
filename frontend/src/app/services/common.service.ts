@@ -26,12 +26,7 @@ export class CommonService {
     return this.http.post<any>(this.url + '/api/login', user, this.httpOptions);
   }
 
-  findUser(id_user: any = null) {
-    if (id_user == null && sessionStorage['id_user']) {
-      id_user = sessionStorage['id_user'];
-    } else if (id_user == null) {
-      id_user = 1;
-    }
+  findUser(id_user: any) {
     return this.http.get<any>(this.url + '/api/user/' + id_user, this.httpOptions);
   }
 
@@ -52,28 +47,22 @@ export class CommonService {
   updateUser(id: number, user: any): Observable<any> {
     return this.http.put(this.url + '/api/user/' + id, user, this.httpOptions);
   }
-
+  makeAdmin(id: any): Observable<any> {
+    return this.http.put<any>(this.url + '/api/make-user-admin/' + id, this.httpOptions);
+  }
+  makeNormal(id: any): Observable<any> {
+    return this.http.put<any>(this.url + '/api/make-user-normal/' + id, this.httpOptions);
+  }
   deleteUser(id: any): Observable<any> {
     return this.http.delete<any>(this.url + '/api/user/' + id, this.httpOptions);
   }
 
   //PROFILES
-  listProfiles() {
-    let id_user;
-    if (sessionStorage['id_user']) {
-      id_user = sessionStorage['id_user'];
-    } else {
-      id_user = 1;
-    }
+  listProfiles(id_user: any) {
     return this.http.get<any>(this.url + '/api/profiles/' + id_user, this.httpOptions);
   }
 
-  findProfile(id_user: any = null) {
-    if (id_user == null && sessionStorage['id_user']) {
-      id_user = sessionStorage['id_user'];
-    } else if (id_user == null) {
-      id_user = 1;
-    }
+  findProfile(id_user: any) {
     return this.http.get<any>(this.url + '/api/profile/' + id_user, this.httpOptions);
   }
 

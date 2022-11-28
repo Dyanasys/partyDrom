@@ -10,10 +10,31 @@
 <div class="row" *ngIf="users.length&&session.is_admin&&session.is_admin==1; else noParties">
   <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let user of users">
     <mat-card>
-      <mat-card-title class="mat-h1 light-primary">
-        <div>
-          {{user.name}}
+      <mat-card-title>
+        <div *ngIf="user.is_admin == 1 else noAdmin">
+          <div class="mat-h1 light-primary">
+            {{user.name}}
+            <p style="font-size: 14px; color:white"> Usuario Admin</p>
+          </div>
+          <div class="flex-center">
+            <button type="button" mat-raised-button color="accent" (click)="makeAdmin(user.id)" routerLink="/">hacer
+              Administrador
+            </button>
+          </div>
+
         </div>
+        <ng-template #noAdmin>
+          <div class="mat-h1 light-primary">
+            {{user.name}}
+            <p style="font-size: 14px; color:white"> Usuario Normal</p>
+          </div>
+          <div class="flex-center">
+            <button type="button" mat-raised-button color="accent" (click)="makeNormal(user.id)" routerLink="/">hacer
+              Administrador
+            </button>
+          </div>
+
+        </ng-template>
       </mat-card-title>
       <mat-divider></mat-divider>
       <div class="v-spacing"></div>
@@ -29,6 +50,7 @@
         <div>
           <button type="button" mat-mini-fab color="primary" routerLink="/edit-user/{{user.id}}">Edit</button>
           <button type="button" mat-button color="warn" (click)="delete(user.id)" routerLink="/">Delete</button>
+          <button type="button" mat-stroked-button color="accent" routerLink="/profile/{{user.id}}">Ver perfil</button>
         </div>
       </mat-card-actions>
     </mat-card>
@@ -39,7 +61,6 @@
     <h3 class="primary">Logueate como admin</h3>
   </div>
   <ng-template #isLogin>
-    <mat-spinner></mat-spinner>
     <h1 class="primary">Ups, parece que no hay usuarios :(</h1>
   </ng-template>
 </ng-template>

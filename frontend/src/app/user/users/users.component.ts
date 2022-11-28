@@ -32,5 +32,17 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  makeAdmin(id: any) {
+    this.commonService.makeAdmin(id).subscribe(user => {
+      this.router.navigateByUrl('/admin-users').then(r => console.log(r) );
+    });
+  }
+
+  makeNormal(id: any) {
+    this.commonService.makeNormal(id).subscribe(user => {
+      this.router.navigateByUrl('/admin-users').then(r => console.log(r) );
+    });
+  }
+
 
 }

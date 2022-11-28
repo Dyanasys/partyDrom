@@ -59,6 +59,9 @@ export class PartiesComponent implements OnInit {
 
     this.commonService.createRequest(this.myrequest as any).subscribe((request: any) => {
       this.myrequest = request
+      this.router.navigateByUrl('/').then(r => {
+        console.log('request sent :)')
+      });
     });
   }
 

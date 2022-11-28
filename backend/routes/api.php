@@ -75,6 +75,8 @@ Route::get('/user/{id}', function ($id) {
 Route::delete('/user/{id}', [UserController::class, 'destroy']);
 Route::post('/user', [UserController::class, 'store']);
 Route::put('/user/{id}', [UserController::class, 'update']);
+Route::put('/make-user-admin/{id}', [UserController::class, 'makeAdmin']);
+Route::put('/make-user-normal/{id}', [UserController::class, 'makeNormal']);
 //LOGIN
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::post('/logout', [UserController::class, 'logout']);
