@@ -39,13 +39,21 @@ export class PartyRequestsComponent implements OnInit {
 
   }
 
-  acceptRequest(id_request: string){
+  declineRequest(id_request: string) {
+    this.commonService.declineRequest(id_request as any).subscribe((request: any) => {
+      this.myrequest = request
+      window.location.reload();
+    });
+
+  }
+
+  acceptRequest(id_request: string) {
     this.commonService.acceptRequest(id_request as any).subscribe((request: any) => {
 
-      if(request!='0'){
+      if (request != '0') {
         this.myrequest = request
         window.location.reload();
-      }else{
+      } else {
         alert('ya has agotado todas tus invitaciones');
       }
     });

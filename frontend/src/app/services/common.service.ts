@@ -86,6 +86,9 @@ export class CommonService {
   cancelRequest(id_request: any): Observable<any> {
     return this.http.put(this.url + '/api/cancel-request/'+ id_request, this.httpOptions);
   }
+  declineRequest(id_request: any): Observable<any> {
+    return this.http.put(this.url + '/api/decline-request/'+ id_request, this.httpOptions);
+  }
   acceptRequest(id_request: any): Observable<any> {
     return this.http.put(this.url + '/api/accept-request/'+ id_request, this.httpOptions);
   }

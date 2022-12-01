@@ -113,6 +113,20 @@ class RequestController extends Controller
         }
     }
 
+    public function decline($id): \Illuminate\Http\JsonResponse
+    {
+        if (Request::where('id', $id)->exists()) {
+            $myrequest = Request::find($id);
+            $myrequest->canceled = 1;
+            $myrequest->accepted = 0;
+            $myrequest->pending = 0;
+            $myrequest->save();
+            return response()->json(['message' => 'Request canceled succefully :D'], 200);
+        } else {
+            return response()->json(['message' => 'Request not found :('], 400);
+        }
+    }
+
     public function accept($id): \Illuminate\Http\JsonResponse
     {
 

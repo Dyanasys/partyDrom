@@ -9,16 +9,12 @@
 <div class="row" *ngIf="requests.length&&session.id_user; else noParties">
   <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let request of requests">
     <mat-card>
-      <mat-card-title class="mat-h1 light-primary">
+      <mat-card-title class="mat-h1">
         <div>
-          {{request.title}}
+          <a type="button" routerLink="/profile/{{request.id_profile}}" class="big-font light-primary">{{request.public_name}}</a>
+          quiere ir a tu fiesta: {{request.title}}
         </div>
       </mat-card-title>
-      <mat-card-content class="tinymargin">
-        solicitante:
-        <button type="button" mat-button color="primary"
-                routerLink="/profile/{{request.id_profile}}">{{request.public_name}}</button>
-      </mat-card-content>
       <mat-card-actions>
         <div *ngIf="request.pending == 1 else noPending">
           <button type="button" mat-fab color="accent">pendiente</button>
@@ -42,11 +38,14 @@
         </div>
         <ng-template #noPending2>
           <div *ngIf="request.accepted == 1 else noAccepted2">
-            <button type="button" mat-raised-button color="warn" (click)="cancelRequest(request.id)">Rechazarla</button>
+            <button type="button" mat-raised-button color="warn" (click)="declineRequest(request.id)">retirar
+              invitación
+            </button>
           </div>
           <ng-template #noAccepted2>
             <div *ngIf="request.canceled == 1 ">
-              <button type="button" mat-raised-button color="primary" (click)="acceptRequest(request.id)">Aceptarla</button>
+              <button type="button" mat-raised-button color="primary" (click)="acceptRequest(request.id)">Aceptarla
+              </button>
             </div>
           </ng-template>
         </ng-template>

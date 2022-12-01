@@ -103,6 +103,7 @@ Route::get('/user-requests/{id_user}', [RequestController::class, 'listUserReque
 Route::get('/party-requests/{id_party}', [RequestController::class, 'listPartyRequests']);
 Route::put('/request/{id}', [RequestController::class, 'update']);
 Route::put('/cancel-request/{id}', [RequestController::class, 'cancel']);
+Route::put('/decline-request/{id}', [RequestController::class, 'decline']);
 Route::put('/accept-request/{id}', [RequestController::class, 'accept']);
 Route::put('/get-vacancies/{id}', [RequestController::class, 'getVacancies']);
 Route::delete('/request/{id}', [RequestController::class, 'destroy']);

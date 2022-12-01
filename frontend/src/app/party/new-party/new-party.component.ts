@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {PartyService} from "../../services/party.service";
+import {CommonService} from "../../services/common.service";
 
 @Component({
   selector: 'app-new-party',
@@ -8,7 +9,7 @@ import {PartyService} from "../../services/party.service";
   styleUrls: ['./new-party.component.scss']
 })
 export class NewPartyComponent implements OnInit {
-  constructor(private partyService: PartyService, private router: Router) {
+  constructor(private partyService: PartyService, private router: Router, private commonService: CommonService) {
   }
   aChecked = true;
   sChecked = false;
@@ -19,10 +20,13 @@ export class NewPartyComponent implements OnInit {
   fakeDetails = "FAKE DETAILS";
   fakePhone = "666123123";
   party: any;
+  locations : any;
+  ciudad:any;
   // parties: any;
   // dataSource = new MatTableDataSource<any>();
 
   ngOnInit(): void {
+    this.getLocations();
   }
 
   add(vacancies: string, title: string, description: string, photo: null, date: string, time: string, alcohol: boolean, smoke: boolean, location: string, address: string, meeting_details: string, phone_contact: string) {
@@ -57,8 +61,12 @@ export class NewPartyComponent implements OnInit {
         console.log('party added :)')
       });
     } );
+  }
 
-
+  getLocations() {
+    this.locations = this.commonService.listLocations().subscribe(locations => {
+      this.locations = locations;
+    });
   }
 
 }
