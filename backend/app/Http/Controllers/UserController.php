@@ -16,7 +16,12 @@ class UserController extends Controller
             $user = User::where("email", "like", $email)->where('password', 'like', $password)->get();
             return response()->json($user);
         } else {
-            return response()->json('0');
+            if (User::where("name", "like", $email)->where('password', 'like', $password)->exists()) {
+                $user = User::where("name", "like", $email)->where('password', 'like', $password)->get();
+                return response()->json($user);
+            } else {
+                return response()->json('0');
+            }
         }
     }
 //    public function _authenticate(Request $request): RedirectResponse

@@ -62,6 +62,7 @@ Route::post('/parties', [PartyController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 //USERS
 Route::get('/users', function () {
     return UserResource::collection(User::all());
@@ -102,6 +103,8 @@ Route::get('/user-requests/{id_user}', [RequestController::class, 'listUserReque
 Route::get('/party-requests/{id_party}', [RequestController::class, 'listPartyRequests']);
 Route::put('/request/{id}', [RequestController::class, 'update']);
 Route::put('/cancel-request/{id}', [RequestController::class, 'cancel']);
+Route::put('/accept-request/{id}', [RequestController::class, 'accept']);
+Route::put('/get-vacancies/{id}', [RequestController::class, 'getVacancies']);
 Route::delete('/request/{id}', [RequestController::class, 'destroy']);
 Route::post('/requests', [RequestController::class, 'store']);
 

@@ -86,6 +86,9 @@ export class CommonService {
   cancelRequest(id_request: any): Observable<any> {
     return this.http.put(this.url + '/api/cancel-request/'+ id_request, this.httpOptions);
   }
+  acceptRequest(id_request: any): Observable<any> {
+    return this.http.put(this.url + '/api/accept-request/'+ id_request, this.httpOptions);
+  }
 
   getUserRequests(id_user: string) {
     return this.http.get(this.url + '/api/user-requests/'+ id_user, this.httpOptions);
@@ -93,6 +96,10 @@ export class CommonService {
 
   getPartyRequests(id_party: string) {
     return this.http.get(this.url + '/api/party-requests/'+ id_party, this.httpOptions);
+  }
+
+  getPartyVacancies(id_party: string) {
+    return this.http.get(this.url + '/api/get-vacancies/'+ id_party, this.httpOptions);
   }
 
   // list() {
