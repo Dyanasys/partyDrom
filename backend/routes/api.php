@@ -88,6 +88,7 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/profile/{id}', function ($id) {
     return new ProfileResource(Profile::findOrFail($id));
 });
+Route::get('/profile/new/{id_user}', [ProfileController::class, 'profileCreated']);
 Route::get('/profiles/{id_user}', function ($id_user) {
     return ProfileResource::collection(Profile::where("id_user", "<>", $id_user)->get());
 });

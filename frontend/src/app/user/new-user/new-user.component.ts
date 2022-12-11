@@ -25,16 +25,16 @@ export class NewUserComponent implements OnInit {
       'password': password
     }
     this.commonService.addUser(this.user as any).subscribe(user => {
-      if(sessionStorage['is_admin']){
+      if (sessionStorage['is_admin']) {
         this.router.navigateByUrl('/admin-users').then(r => {
           console.log('user added :)')
         });
-      }else{
+      } else {
         sessionStorage.setItem('id_user', user.id);
         sessionStorage.setItem('is_admin', user.is_admin);
         sessionStorage.setItem('user_name', user.name);
         this.session = sessionStorage;
-        this.router.navigateByUrl('/edit-profile/' + user.id).then(r => {
+        this.router.navigateByUrl('/edit-profile/' + 1 + '/' + user.id).then(r => {
           console.log('user added :)')
         });
       }

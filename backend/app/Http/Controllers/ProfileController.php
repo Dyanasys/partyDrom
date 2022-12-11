@@ -17,6 +17,14 @@ class ProfileController extends Controller
         return Profile::all();
     }
 
+    public function profileCreated($id_user)
+    {
+        return Profile::select(
+            '*'
+        )->where("id_user", "=", $id_user)->first();
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

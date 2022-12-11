@@ -25,18 +25,25 @@ export class ProfileComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     if (routeParams.get('id')) {
       this.id = Number(routeParams.get('id'));
+      this.profile = this.commonService.findProfile(this.id).subscribe(profile => {
+        if (profile.birth_date) {
+          let birthdate = new Date(profile.birth_date);
+          let timeDiff = Math.abs(Date.now() - birthdate.getTime());
+          profile.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
+        }
+        this.profile = profile;
+      });
     } else {
       this.id = sessionStorage['id_user'];
+      this.profile = this.commonService.findCreatedProfile(this.id).subscribe(profile => {
+        if (profile.birth_date) {
+          let birthdate = new Date(profile.birth_date);
+          let timeDiff = Math.abs(Date.now() - birthdate.getTime());
+          profile.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
+        }
+        this.profile = profile;
+      });
     }
-
-    this.profile = this.commonService.findProfile(this.id).subscribe(profile => {
-      if (profile.birth_date) {
-        let birthdate = new Date(profile.birth_date);
-        let timeDiff = Math.abs(Date.now() - birthdate.getTime());
-        profile.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
-      }
-      this.profile = profile;
-    });
   }
 
   delete(id: any) {

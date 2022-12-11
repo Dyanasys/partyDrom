@@ -69,6 +69,10 @@ export class CommonService {
     return this.http.get<any>(this.url + '/api/profile/' + id_user, this.httpOptions);
   }
 
+  findCreatedProfile(id_user: any) {
+    return this.http.get<any>(this.url + '/api/profile/new/' + id_user, this.httpOptions);
+  }
+
   deleteProfile(id: any): Observable<any> {
     return this.http.delete<any>(this.url + '/api/profile/' + id, this.httpOptions);
   }

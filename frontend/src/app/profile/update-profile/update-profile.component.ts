@@ -27,10 +27,18 @@ export class UpdateProfileComponent implements OnInit {
     } else {
       this.id = sessionStorage['id_user'];
     }
-    this.profile = this.commonService.findProfile(this.id).subscribe(profile => {
-      this.profile = profile;
-      this.id = profile.id;
-    });
+    if (routeParams.get('new')) {
+      this.profile = this.commonService.findCreatedProfile(this.id).subscribe(profile => {
+        this.profile = profile;
+        this.id = profile.id;
+      });
+    } else {
+      this.profile = this.commonService.findProfile(this.id).subscribe(profile => {
+        this.profile = profile;
+        this.id = profile.id;
+      });
+    }
+
   }
 
   update() {

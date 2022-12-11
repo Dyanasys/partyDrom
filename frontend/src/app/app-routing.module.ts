@@ -66,6 +66,9 @@ const routes: Routes = [
     path: 'edit-profile/:id', component: UpdateProfileComponent
   },
   {
+    path: 'edit-profile/:new/:id', component: UpdateProfileComponent
+  },
+  {
     path: 'user-requests', component: RequestsComponent
   },
   {
