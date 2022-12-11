@@ -28,7 +28,7 @@
       </mat-card-content>
       <mat-card-actions>
         <div *ngIf="request.accepted else noRequest">
-          <button type="button" mat-fab color="primary">Aceptada!</button>
+          <button type="button" mat-fab class="green-bg">Aceptada!</button>
           <div>
             <h3>Detalles: </h3>
             <div><span class="light-primary">Teléfono de contacto:</span> {{request.phone_contact}}</div>

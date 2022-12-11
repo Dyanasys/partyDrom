@@ -13,8 +13,8 @@ export class PartiesComponent implements OnInit {
   session: any;
   locations: any;
   myrequest: any;
-  filter_loc :any;
-  mydate:any;
+  filter_loc: any;
+  mydate: any;
 
   constructor(private partyService: PartyService, private route: ActivatedRoute, private router: Router, private commonService: CommonService) {
   }
@@ -44,8 +44,8 @@ export class PartiesComponent implements OnInit {
     } else {
       id_user = null;
     }
-    let myfilterloc = this.filter_loc? this.filter_loc : 0;
-    let myfilterdate = this.mydate? this.mydate : 0;
+    let myfilterloc = this.filter_loc ? this.filter_loc : 0;
+    let myfilterdate = this.mydate ? this.mydate : 0;
     this.parties = this.partyService.filterUsersParties(id_user, myfilterloc, myfilterdate).subscribe(parties => {
       this.parties = parties;
     });
@@ -73,9 +73,7 @@ export class PartiesComponent implements OnInit {
 
     this.commonService.createRequest(this.myrequest as any).subscribe((request: any) => {
       this.myrequest = request
-      this.router.navigateByUrl('/').then(r => {
-        console.log('request sent :)')
-      });
+      window.location.reload();
     });
   }
 
@@ -85,7 +83,7 @@ export class PartiesComponent implements OnInit {
     });
   }
 
-  refresh(){
+  refresh() {
     window.location.reload();
   }
 }

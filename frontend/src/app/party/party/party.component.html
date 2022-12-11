@@ -23,7 +23,7 @@
         <div class="flex-center">
           <div *ngIf="party.id_request else noRequest" class="v-margin">
             <div *ngIf="party.request_accepted else noAccepted" class="v-margin">
-              <button type="button" mat-fab color="primary" routerLink="/user-requests/{{party.id}}">Aceptada!</button>
+              <button type="button" mat-fab class="green-bg" routerLink="/user-requests/{{party.id}}">Aceptada!</button>
             </div>
             <ng-template #noAccepted>
               <div *ngIf="party.request_canceled else pending" class="v-margin">

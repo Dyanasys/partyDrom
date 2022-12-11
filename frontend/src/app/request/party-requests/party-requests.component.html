@@ -21,7 +21,7 @@
         </div>
         <ng-template #noPending>
           <div *ngIf="request.accepted == 1 else noAccepted">
-            <button type="button" mat-fab color="primary">Aceptada!</button>
+            <button type="button" mat-fab class="green-bg">Aceptada!</button>
           </div>
           <ng-template #noAccepted>
             <div *ngIf="request.canceled == 1 ">
