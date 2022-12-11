@@ -24,6 +24,10 @@ export class PartyService {
     return this.http.get<any>(this.url + '/api/users-parties/' + id_user, this.httpOptions);
   }
 
+  adminParties(id_user: any) {
+    return this.http.get<any>(this.url + '/api/admin-parties/' + id_user, this.httpOptions);
+  }
+
   filterUsersParties(id_user: any, id_loc: any, date: any) {
     return this.http.get<any>(this.url + '/api/users-parties/' + id_user + '/' + id_loc + '/' + date, this.httpOptions);
   }

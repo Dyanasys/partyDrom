@@ -110,6 +110,32 @@ class PartyController extends Controller
         return $data;
     }
 
+    public function adminParties($id_user)
+    {
+        $currentdate = date('Y-m-d');
+            $data = Party::select(
+                'parties.*',
+                'locations.name as location_name',
+                'profiles.public_name',
+                'requests.id as id_request',
+                'requests.canceled as request_canceled',
+                'requests.accepted as request_accepted',
+                'requests.pending as request_pending'
+            )->join(
+                'locations',
+                'parties.id_location',
+                '=',
+                'locations.id'
+            )->join('profiles', 'parties.id_user', '=', 'profiles.id_user')->leftJoin(
+                'requests',
+                function ($join) use ($id_user) {
+                    $join->on("parties.id", "requests.id_party");
+                    $join->where("requests.id_user", $id_user);
+                }
+            )->where("parties.id_user", "<>", $id_user)->orderby("date", "asc")->orderby("time", "asc")->get();
+        return $data;
+    }
+
     public function listYourParties($id_user)
     {
         $query = DB::select(

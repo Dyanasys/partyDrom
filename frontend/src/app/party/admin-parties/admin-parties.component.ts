@@ -26,14 +26,15 @@ export class AdminPartiesComponent implements OnInit {
     } else {
       id_user = 1;
     }
-    this.parties = this.partyService.listUsersParties(id_user).subscribe(party => {
+    this.parties = this.partyService.adminParties(id_user).subscribe(party => {
       this.parties = party;
     });
   }
 
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
-      this.show();
+      // this.show();
+      window.location.reload();
     });
   }
 
