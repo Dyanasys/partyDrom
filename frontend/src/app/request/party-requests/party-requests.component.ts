@@ -36,7 +36,6 @@ export class PartyRequestsComponent implements OnInit {
       this.myrequest = request
       window.location.reload();
     });
-
   }
 
   declineRequest(id_request: string) {
@@ -44,12 +43,10 @@ export class PartyRequestsComponent implements OnInit {
       this.myrequest = request
       window.location.reload();
     });
-
   }
 
   acceptRequest(id_request: string) {
     this.commonService.acceptRequest(id_request as any).subscribe((request: any) => {
-
       if (request != '0') {
         this.myrequest = request
         window.location.reload();
