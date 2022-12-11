@@ -34,11 +34,11 @@
         <mat-divider></mat-divider>
         <div *ngIf="request.pending == 1 else noPending2">
           <button type="button" mat-raised-button color="primary" (click)="acceptRequest(request.id)">Aceptarla</button>
-          <button type="button" mat-stroked-button color="warn" (click)="cancelRequest(request.id)">Rechazarla</button>
+          <button type="button" mat-stroked-button color="warn" (click)="declineRequest(request.id)">Rechazarla</button>
         </div>
         <ng-template #noPending2>
           <div *ngIf="request.accepted == 1 else noAccepted2">
-            <button type="button" mat-raised-button color="warn" (click)="declineRequest(request.id)">retirar
+            <button type="button" mat-raised-button color="warn" (click)="cancelRequest(request.id)">retirar
               invitación
             </button>
           </div>
