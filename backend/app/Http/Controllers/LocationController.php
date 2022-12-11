@@ -19,6 +19,7 @@ class LocationController extends Controller
 
     public function listUsersPartiesLoc($id_user)
     {
+        $currentdate = date('Y-m-d');
             $data = Location::select(
                 'locations.*'
             )->join(
@@ -26,7 +27,7 @@ class LocationController extends Controller
                 'parties.id_location',
                 '=',
                 'locations.id'
-            )->where("parties.id_user", "<>", $id_user)->orderby("locations.name", "asc")->distinct()->get();
+            )->where("parties.id_user", "<>", $id_user)->where("parties.date",">=",$currentdate)->orderby("locations.name", "asc")->distinct()->get();
 
         return $data;
     }

@@ -34,7 +34,6 @@ export class PartiesComponent implements OnInit {
     }
     this.parties = this.partyService.listUsersParties(id_user).subscribe(parties => {
       this.parties = parties;
-      console.log(this.parties);
     });
   }
 
@@ -49,7 +48,6 @@ export class PartiesComponent implements OnInit {
     let myfilterdate = this.mydate? this.mydate : 0;
     this.parties = this.partyService.filterUsersParties(id_user, myfilterloc, myfilterdate).subscribe(parties => {
       this.parties = parties;
-      console.log(this.parties);
     });
   }
 
@@ -62,7 +60,6 @@ export class PartiesComponent implements OnInit {
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
       this.show();
-      console.log(this.parties);
     });
   }
 
@@ -86,5 +83,9 @@ export class PartiesComponent implements OnInit {
     this.commonService.cancelRequest(id_request as any).subscribe((request: any) => {
       this.myrequest = request
     });
+  }
+
+  refresh(){
+    window.location.reload();
   }
 }

@@ -45,7 +45,6 @@ export class YourPartiesComponent implements OnInit {
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
       this.show();
-      console.log(this.parties);
     });
   }
 

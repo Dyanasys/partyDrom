@@ -37,5 +37,4 @@ export class AdminPartiesComponent implements OnInit {
     });
   }
 
-
 }

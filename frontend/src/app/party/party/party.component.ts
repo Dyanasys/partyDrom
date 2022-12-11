@@ -27,14 +27,12 @@ export class PartyComponent implements OnInit {
     this.id = Number(routeParams.get('id'));
     this.party = this.partyService.find(this.id).subscribe(party => {
       this.party = party;
-      console.log(this.party);
     });
   }
 
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
       this.show();
-      console.log(this.party);
     });
   }
 
