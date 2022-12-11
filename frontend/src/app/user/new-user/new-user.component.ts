@@ -31,8 +31,8 @@ export class NewUserComponent implements OnInit {
         });
       }else{
         sessionStorage.setItem('id_user', user.id);
-        sessionStorage.setItem('is_admin', user.name);
-        sessionStorage.setItem('user_name', user.is_admin);
+        sessionStorage.setItem('is_admin', user.is_admin);
+        sessionStorage.setItem('user_name', user.name);
         this.session = sessionStorage;
         this.router.navigateByUrl('/edit-profile/' + user.id).then(r => {
           console.log('user added :)')
