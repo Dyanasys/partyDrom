@@ -22,18 +22,32 @@ class RequestController extends Controller
     }
 
 
-    public function listUserRequests($id_user)
+    public function listUserRequests($id_user, $id_party='0')
     {
-        $data = Request::select(
-            'requests.*',
-            'parties.id as id_party',
-            'parties.title',
-            'parties.meeting_details',
-            'parties.phone_contact',
-            'parties.address'
-        )
-            ->join('parties', 'requests.id_party', '=', 'parties.id')
-            ->where("requests.id_user", "=", $id_user)->get();
+        if($id_party!='0'){
+            $data = Request::select(
+                'requests.*',
+                'parties.id as id_party',
+                'parties.title',
+                'parties.meeting_details',
+                'parties.phone_contact',
+                'parties.address'
+            )
+                ->join('parties', 'requests.id_party', '=', 'parties.id')
+                ->where("requests.id_user", "=", $id_user)->where("requests.id_party", "=", $id_party)->get();
+        }else{
+            $data = Request::select(
+                'requests.*',
+                'parties.id as id_party',
+                'parties.title',
+                'parties.meeting_details',
+                'parties.phone_contact',
+                'parties.address'
+            )
+                ->join('parties', 'requests.id_party', '=', 'parties.id')
+                ->where("requests.id_user", "=", $id_user)->get();
+        }
+
         return $data;
     }
 

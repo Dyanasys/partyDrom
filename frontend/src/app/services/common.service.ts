@@ -47,12 +47,15 @@ export class CommonService {
   updateUser(id: number, user: any): Observable<any> {
     return this.http.put(this.url + '/api/user/' + id, user, this.httpOptions);
   }
+
   makeAdmin(id: any): Observable<any> {
     return this.http.put<any>(this.url + '/api/make-user-admin/' + id, this.httpOptions);
   }
+
   makeNormal(id: any): Observable<any> {
     return this.http.put<any>(this.url + '/api/make-user-normal/' + id, this.httpOptions);
   }
+
   deleteUser(id: any): Observable<any> {
     return this.http.delete<any>(this.url + '/api/user/' + id, this.httpOptions);
   }
@@ -78,31 +81,52 @@ export class CommonService {
   listLocations() {
     return this.http.get<any>(this.url + '/api/locations/', this.httpOptions);
   }
+
+  listUsersLocations() {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = 1;
+    }
+    return this.http.get<any>(this.url + '/api/users-locations/' + id_user, this.httpOptions);
+  }
+
   //request
   createRequest(myrequest: any): Observable<any> {
     return this.http.post<any>(this.url + '/api/requests', myrequest, this.httpOptions);
   }
 
   cancelRequest(id_request: any): Observable<any> {
-    return this.http.put(this.url + '/api/cancel-request/'+ id_request, this.httpOptions);
+    return this.http.put(this.url + '/api/cancel-request/' + id_request, this.httpOptions);
   }
+
   declineRequest(id_request: any): Observable<any> {
-    return this.http.put(this.url + '/api/decline-request/'+ id_request, this.httpOptions);
+    return this.http.put(this.url + '/api/decline-request/' + id_request, this.httpOptions);
   }
+
   acceptRequest(id_request: any): Observable<any> {
-    return this.http.put(this.url + '/api/accept-request/'+ id_request, this.httpOptions);
+    return this.http.put(this.url + '/api/accept-request/' + id_request, this.httpOptions);
   }
 
   getUserRequests(id_user: string) {
-    return this.http.get(this.url + '/api/user-requests/'+ id_user, this.httpOptions);
+    return this.http.get(this.url + '/api/user-requests/' + id_user, this.httpOptions);
+  }
+
+  getUserRequest(id_user: string, id_party: string) {
+    return this.http.get(this.url + '/api/user-requests/' + id_user + '/' + id_party, this.httpOptions);
+  }
+
+  getRequest(id_request: string) {
+    return this.http.get(this.url + '/api/request/' + id_request, this.httpOptions);
   }
 
   getPartyRequests(id_party: string) {
-    return this.http.get(this.url + '/api/party-requests/'+ id_party, this.httpOptions);
+    return this.http.get(this.url + '/api/party-requests/' + id_party, this.httpOptions);
   }
 
   getPartyVacancies(id_party: string) {
-    return this.http.get(this.url + '/api/get-vacancies/'+ id_party, this.httpOptions);
+    return this.http.get(this.url + '/api/get-vacancies/' + id_party, this.httpOptions);
   }
 
   // list() {

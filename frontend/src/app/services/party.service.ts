@@ -20,12 +20,20 @@ export class PartyService {
     return this.http.get<any>(this.url + '/api/parties', this.httpOptions);
   }
 
-  listUsersParties(id_user : any) {
+  listUsersParties(id_user: any) {
     return this.http.get<any>(this.url + '/api/users-parties/' + id_user, this.httpOptions);
   }
 
-  listYourParties(id_user : any) {
+  filterUsersParties(id_user: any, id_loc: any, date: any) {
+    return this.http.get<any>(this.url + '/api/users-parties/' + id_user + '/' + id_loc + '/' + date, this.httpOptions);
+  }
+
+  listYourParties(id_user: any) {
     return this.http.get<any>(this.url + '/api/your-parties/' + id_user, this.httpOptions);
+  }
+
+  listYourParty(id_user: any, id_party: any) {
+    return this.http.get<any>(this.url + '/api/your-parties/' + id_user + '/' + id_party, this.httpOptions);
   }
 
   add(party: any): Observable<any> {

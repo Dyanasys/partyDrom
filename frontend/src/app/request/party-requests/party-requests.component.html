@@ -12,7 +12,7 @@
       <mat-card-title class="mat-h1">
         <div>
           <a type="button" routerLink="/profile/{{request.id_profile}}" class="big-font light-primary">{{request.public_name}}</a>
-          quiere ir a tu fiesta: {{request.title}}
+          quiere ir a tu fiesta:  <a type="button" routerLink="/your-parties/{{request.id_party}}" class="light-primary">{{request.title}}</a>
         </div>
       </mat-card-title>
       <mat-card-actions>
@@ -65,7 +65,7 @@
     <button mat-stroked-button routerLink="/signup">Registrate!</button>
   </div>
   <ng-template #isLogin>
-    <h1 class="primary">Ups, parece que no hay plan :(</h1>
+<!--    <h1 class="primary">Ups, parece que no hay plan :(</h1>-->
   </ng-template>
 </ng-template>
 

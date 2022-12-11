@@ -1,21 +1,28 @@
 <div class="row">
-  <div class="space-between">
-    <h1 class="myTitle light-primary">Encuentra plan!
+  <div class="space-between row">
+    <h1 class="myTitle light-primary col-md-4 col-12">Encuentra plan!
       <mat-icon>favorite</mat-icon>
     </h1>
-    <div *ngIf="session.id_user">
+    <div class="col-md-3 col-12" *ngIf="session.id_user">
       <mat-form-field appearance="fill" *ngIf="locations&&locations.length">
         <mat-label>ciudad</mat-label>
-        <mat-select>
+        <mat-select [(value)]="filter_loc" (selectionChange)="filterParties()">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="spacing"></div>
+    <div class="col-md-3 col-12" *ngIf="session.id_user">
+      <mat-form-field>
+        <mat-label>fecha</mat-label>
+        <input matInput type="date" #filterdate id="filterdate" [(ngModel)]="mydate" (change)="filterParties()">
+      </mat-form-field>
+    </div>
   </div>
 </div>
 <div class="row" *ngIf="parties.length&&session.id_user; else noParties">
-  <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let party of parties">
+  <div class="col-md-6 col-12 col-lg-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let party of parties">
     <mat-card>
       <mat-card-title class="mat-h1 light-primary">
         <div>
@@ -30,7 +37,19 @@
         <mat-divider></mat-divider>
         <div class="flex-center">
           <div *ngIf="party.id_request else noRequest" class="v-margin">
-            <button type="button" mat-fab color="accent">pendiente</button>
+            <div *ngIf="party.request_accepted else noAccepted" class="v-margin">
+              <button type="button" mat-fab color="primary" routerLink="/user-requests/{{party.id}}">Aceptada!</button>
+            </div>
+            <ng-template #noAccepted>
+              <div *ngIf="party.request_canceled else pending" class="v-margin">
+                <button type="button" mat-fab color="accent" routerLink="/user-requests/{{party.id}}">Cancelada</button>
+              </div>
+              <ng-template #pending>
+                <div class="v-margin">
+                  <button type="button" mat-fab color="accent" routerLink="/user-requests/{{party.id}}">pendiente</button>
+                </div>
+              </ng-template>
+            </ng-template>
           </div>
           <ng-template #noRequest>
             <div class="v-margin">
@@ -102,6 +121,8 @@
     <button mat-stroked-button routerLink="/signup">Registrate!</button>
   </div>
   <ng-template #isLogin>
-    <h1 class="primary">Ups, parece que no hay plan :(</h1>
+<!--    <div *ngIf="notFound">-->
+<!--      <h1 class="primary">Ups, parece que no hay plan :(</h1>-->
+<!--    </div>-->
   </ng-template>
 </ng-template>

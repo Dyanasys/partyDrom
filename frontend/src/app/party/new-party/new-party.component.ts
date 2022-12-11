@@ -29,7 +29,7 @@ export class NewPartyComponent implements OnInit {
     this.getLocations();
   }
 
-  add(vacancies: string, title: string, description: string, photo: null, date: string, time: string, alcohol: boolean, smoke: boolean, location: string, address: string, meeting_details: string, phone_contact: string) {
+  add(vacancies: string, title: string, description: string, photo: null, date: string, time: string, alcohol: boolean, smoke: boolean, address: string, meeting_details: string, phone_contact: string) {
     let numAlcohol = alcohol?1:0;
     let numSmoke = smoke?1:0;
 
@@ -43,7 +43,7 @@ export class NewPartyComponent implements OnInit {
       'time': time,
       'alcohol': numAlcohol,
       'smoke': numSmoke,
-      'id_location': parseInt(location),
+      'id_location': this.ciudad,
       'address': address,
       'meeting_details': meeting_details,
       'phone_contact': phone_contact,

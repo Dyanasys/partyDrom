@@ -14,25 +14,25 @@
         <div *ngIf="user.is_admin == 1 else noAdmin">
           <div class="mat-h1 light-primary">
             {{user.name}}
-            <p style="font-size: 14px; color:white"> Usuario Admin</p>
+<!--            <p style="font-size: 14px; color:white"> Usuario Admin</p>-->
           </div>
-          <div class="flex-center">
-            <button type="button" mat-raised-button color="accent" (click)="makeAdmin(user.id)" routerLink="/">hacer
-              Administrador
-            </button>
-          </div>
+<!--          <div class="flex-center">-->
+<!--            <button type="button" mat-raised-button color="accent" (click)="makeAdmin(user.id)" routerLink="/">hacer-->
+<!--              Administrador-->
+<!--            </button>-->
+<!--          </div>-->
 
         </div>
         <ng-template #noAdmin>
           <div class="mat-h1 light-primary">
             {{user.name}}
-            <p style="font-size: 14px; color:white"> Usuario Normal</p>
+<!--            <p style="font-size: 14px; color:white"> Usuario Normal</p>-->
           </div>
-          <div class="flex-center">
-            <button type="button" mat-raised-button color="accent" (click)="makeNormal(user.id)" routerLink="/">hacer
-              Administrador
-            </button>
-          </div>
+<!--          <div class="flex-center">-->
+<!--            <button type="button" mat-raised-button color="accent" (click)="makeNormal(user.id)" routerLink="/">hacer-->
+<!--              normal-->
+<!--            </button>-->
+<!--          </div>-->
 
         </ng-template>
       </mat-card-title>
@@ -61,7 +61,7 @@
     <h3 class="primary">Logueate como admin</h3>
   </div>
   <ng-template #isLogin>
-    <h1 class="primary">Ups, parece que no hay usuarios :(</h1>
+<!--    <h1 class="primary">Ups, parece que no hay usuarios :(</h1>-->
   </ng-template>
 </ng-template>
 

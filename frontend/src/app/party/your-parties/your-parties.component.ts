@@ -11,6 +11,7 @@ export class YourPartiesComponent implements OnInit {
 
   parties: any; //esta variable se pasa al html
   session: any;
+  id:any;
   constructor(private partyService: PartyService, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -26,10 +27,19 @@ export class YourPartiesComponent implements OnInit {
     } else {
       id_user = null;
     }
-    this.parties = this.partyService.listYourParties(id_user).subscribe(party => {
-      this.parties = party;
-      console.log(this.parties);
-    });
+
+    const routeParams = this.route.snapshot.paramMap;
+    if(routeParams.get('id')){
+      this.id = Number(routeParams.get('id'));
+      this.parties = this.partyService.listYourParty(id_user, this.id).subscribe(party => {
+        this.parties = party;
+      });
+    }else{
+      this.parties = this.partyService.listYourParties(id_user).subscribe(party => {
+        this.parties = party;
+      });
+    }
+
   }
 
   delete(id: any) {

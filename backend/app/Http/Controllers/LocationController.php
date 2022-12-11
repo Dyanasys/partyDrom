@@ -17,6 +17,20 @@ class LocationController extends Controller
         return Location::all();
     }
 
+    public function listUsersPartiesLoc($id_user)
+    {
+            $data = Location::select(
+                'locations.*'
+            )->join(
+                'parties',
+                'parties.id_location',
+                '=',
+                'locations.id'
+            )->where("parties.id_user", "<>", $id_user)->orderby("locations.name", "asc")->distinct()->get();
+
+        return $data;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

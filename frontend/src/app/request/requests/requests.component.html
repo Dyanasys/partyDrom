@@ -24,7 +24,7 @@
         </div>
       </mat-card-title>
       <mat-card-content class="tinymargin">
-        <button type="button" mat-button color="primary" routerLink="/party/{{request.id_party}}">ver fiesta</button>
+        <button type="button" mat-stroked-button class="light-primary" routerLink="/party/{{request.id_party}}">ver fiesta</button>
       </mat-card-content>
       <mat-card-actions>
         <div *ngIf="request.accepted else noRequest">
@@ -39,13 +39,21 @@
           </div>
         </div>
         <ng-template #noRequest>
-          <button type="button" mat-fab color="accent">pendiente</button>
+          <div *ngIf="request.canceled else pending" class="v-margin">
+            <button type="button" mat-fab color="accent">Cancelada</button>
+          </div>
+          <ng-template #pending>
+            <div class="v-margin">
+              <button type="button" mat-fab color="accent">pendiente</button>
+            </div>
+          </ng-template>
         </ng-template>
       </mat-card-actions>
-      <mat-card-footer>
+      <mat-card-footer *ngIf="request.canceled == '0'">
         <mat-divider></mat-divider>
-
-        <div class="tinymargin">{{request.id_user}}</div>
+        <div class="tinymargin">
+          <button type="button" mat-stroked-button color="accent" (click)="cancelRequest(request.id)">retirar solicitud</button>
+        </div>
       </mat-card-footer>
     </mat-card>
   </div>
@@ -62,7 +70,6 @@
     <button mat-stroked-button routerLink="/signup">Registrate!</button>
   </div>
   <ng-template #isLogin>
-    <h1 class="primary">Ups, parece que no hay plan :(</h1>
   </ng-template>
 </ng-template>
 

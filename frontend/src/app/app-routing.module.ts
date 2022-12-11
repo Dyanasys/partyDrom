@@ -36,6 +36,9 @@ const routes: Routes = [
     path: 'your-parties', component: YourPartiesComponent
   },
   {
+    path: 'your-parties/:id', component: YourPartiesComponent
+  },
+  {
     path: 'party/:id', component: PartyComponent
   },
   {
@@ -64,6 +67,9 @@ const routes: Routes = [
   },
   {
     path: 'user-requests', component: RequestsComponent
+  },
+  {
+    path: 'user-requests/:id', component: RequestsComponent
   },
   {
     path: 'party-requests/:id', component: PartyRequestsComponent

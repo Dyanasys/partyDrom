@@ -13,6 +13,8 @@ export class PartiesComponent implements OnInit {
   session: any;
   locations: any;
   myrequest: any;
+  filter_loc :any;
+  mydate:any;
 
   constructor(private partyService: PartyService, private route: ActivatedRoute, private router: Router, private commonService: CommonService) {
   }
@@ -36,8 +38,23 @@ export class PartiesComponent implements OnInit {
     });
   }
 
+  filterParties() {
+    let id_user;
+    if (sessionStorage['id_user']) {
+      id_user = sessionStorage['id_user'];
+    } else {
+      id_user = null;
+    }
+    let myfilterloc = this.filter_loc? this.filter_loc : 0;
+    let myfilterdate = this.mydate? this.mydate : 0;
+    this.parties = this.partyService.filterUsersParties(id_user, myfilterloc, myfilterdate).subscribe(parties => {
+      this.parties = parties;
+      console.log(this.parties);
+    });
+  }
+
   getLocations() {
-    this.locations = this.commonService.listLocations().subscribe(locations => {
+    this.locations = this.commonService.listUsersLocations().subscribe(locations => {
       this.locations = locations;
     });
   }

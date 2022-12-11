@@ -14,7 +14,7 @@ export class RequestsComponent implements OnInit {
   session: any;
   locations: any;
   myrequest: any;
-
+  id: any;
   constructor( private route: ActivatedRoute, private router: Router, private commonService: CommonService) {
   }
 
@@ -30,15 +30,24 @@ export class RequestsComponent implements OnInit {
     } else {
       id_user = null;
     }
-    this.requests = this.commonService.getUserRequests(id_user).subscribe((request: any) => {
-      this.requests = request;
-    });
+    const routeParams = this.route.snapshot.paramMap;
+    if(routeParams.get('id')){
+      this.id = Number(routeParams.get('id'));
+      this.requests = this.commonService.getUserRequest(id_user,this.id).subscribe((request: any) => {
+        this.requests = request;
+      });
+    }else{
+      this.requests = this.commonService.getUserRequests(id_user).subscribe((request: any) => {
+        this.requests = request;
+      });
+    }
   }
 
 
   cancelRequest(id_request: string) {
     this.commonService.cancelRequest(id_request as any).subscribe((request: any) => {
       this.myrequest = request
+      window.location.reload();
     });
 
   }

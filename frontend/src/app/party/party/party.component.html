@@ -22,7 +22,19 @@
         <mat-divider></mat-divider>
         <div class="flex-center">
           <div *ngIf="party.id_request else noRequest" class="v-margin">
-            <button type="button" mat-fab color="accent">pendiente</button>
+            <div *ngIf="party.request_accepted else noAccepted" class="v-margin">
+              <button type="button" mat-fab color="primary" routerLink="/user-requests/{{party.id}}">Aceptada!</button>
+            </div>
+            <ng-template #noAccepted>
+              <div *ngIf="party.request_canceled else pending" class="v-margin">
+                <button type="button" mat-fab color="accent" routerLink="/user-requests/{{party.id}}">Cancelada</button>
+              </div>
+              <ng-template #pending>
+                <div class="v-margin">
+                  <button type="button" mat-fab color="accent" routerLink="/user-requests/{{party.id}}">pendiente</button>
+                </div>
+              </ng-template>
+            </ng-template>
           </div>
           <ng-template #noRequest>
             <div class="v-margin">
@@ -94,7 +106,7 @@
     <button mat-stroked-button routerLink="/signup">Registrate!</button>
   </div>
   <ng-template #isLogin>
-    <h1 class="primary">Ups, parece que no hay plan :(</h1>
+<!--    <h1 class="primary">Ups, parece que no hay plan :(</h1>-->
   </ng-template>
 </ng-template>
 
