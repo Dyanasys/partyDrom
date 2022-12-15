@@ -145,7 +145,9 @@ class PartyController extends Controller
             r.pending_request
             FROM parties p
             join locations l on p.id_location = l.id
-            LEFT JOIN (SELECT rr.id AS id_request, sum(rr.pending) AS pending_request, rr.id_user AS id_user_request, rr.id_party AS id_party_request from requests rr right JOIN parties pp ON rr.id_party = pp.id WHERE rr.id_user <> $id_user GROUP BY rr.id_user, rr.id, rr.id_party ) r
+            LEFT JOIN (SELECT rr.id AS id_request, sum(rr.pending) AS pending_request, rr.id_user AS id_user_request,
+                        rr.id_party AS id_party_request from requests rr right JOIN parties pp ON rr.id_party = pp.id
+                        WHERE rr.id_user <> $id_user GROUP BY rr.id_user, rr.id, rr.id_party ) r
             ON r.id_party_request = p.id
             where p.id_user = $id_user
             order by p.created_at desc;"

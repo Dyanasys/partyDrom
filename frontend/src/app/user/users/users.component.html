@@ -6,34 +6,19 @@
     <button mat-raised-button color="primary" routerLink="/add-user">New User</button>
   </div>
 </div>
-
-<div class="row" *ngIf="users.length&&session.is_admin&&session.is_admin==1; else noParties">
+<div class="row" *ngIf="users.length&&session.is_admin&&session.is_admin==1; else noUsers">
   <div class="col-md-4 tinyMarginBottom" style="margin-bottom:10px!important" *ngFor="let user of users">
     <mat-card>
       <mat-card-title>
         <div *ngIf="user.is_admin == 1 else noAdmin">
           <div class="mat-h1 light-primary">
             {{user.name}}
-<!--            <p style="font-size: 14px; color:white"> Usuario Admin</p>-->
           </div>
-<!--          <div class="flex-center">-->
-<!--            <button type="button" mat-raised-button color="accent" (click)="makeAdmin(user.id)" routerLink="/">hacer-->
-<!--              Administrador-->
-<!--            </button>-->
-<!--          </div>-->
-
         </div>
         <ng-template #noAdmin>
           <div class="mat-h1 light-primary">
             {{user.name}}
-<!--            <p style="font-size: 14px; color:white"> Usuario Normal</p>-->
           </div>
-<!--          <div class="flex-center">-->
-<!--            <button type="button" mat-raised-button color="accent" (click)="makeNormal(user.id)" routerLink="/">hacer-->
-<!--              normal-->
-<!--            </button>-->
-<!--          </div>-->
-
         </ng-template>
       </mat-card-title>
       <mat-divider></mat-divider>
@@ -56,7 +41,7 @@
     </mat-card>
   </div>
 </div>
-<ng-template #noParties>
+<ng-template #noUsers>
   <div *ngIf="!session.is_admin; else isLogin">
     <h3 class="primary">Logueate como admin</h3>
   </div>

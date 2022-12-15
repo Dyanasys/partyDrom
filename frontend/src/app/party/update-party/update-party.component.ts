@@ -11,11 +11,12 @@ export class UpdatePartyComponent implements OnInit {
   id: any;
   party: any;
   private sub: any;
-
+  session: any;
   constructor(private route: ActivatedRoute, private router: Router, private partyService: PartyService) {
   }
 
   ngOnInit(): void {
+    this.session = sessionStorage;
     const routeParams = this.route.snapshot.paramMap;
     this.id = Number(routeParams.get('id'));
     console.log("id of party: " + this.id);
@@ -27,7 +28,11 @@ export class UpdatePartyComponent implements OnInit {
 
   update() {
     this.partyService.update(this.id, this.party).subscribe((res) => {
-      this.router.navigateByUrl('/party/'+ this.id).then(r => console.log(res));
+      if(this.party.id_user == this.session.id_user || !this.session.is_admin){
+        this.router.navigateByUrl('/your-parties').then(r => console.log(r));
+      }else{
+        this.router.navigateByUrl('/admin-parties').then(r => console.log(r));
+      }
     });
   }
 

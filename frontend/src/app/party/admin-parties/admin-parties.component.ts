@@ -33,8 +33,7 @@ export class AdminPartiesComponent implements OnInit {
 
   delete(id: any) {
     this.partyService.delete(id).subscribe(party => {
-      // this.show();
-      window.location.reload();
+      this.router.navigateByUrl('/admin-parties').then(r => console.log(r));
     });
   }
 
