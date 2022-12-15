@@ -22,11 +22,11 @@
         </div>
         <mat-divider></mat-divider>
         <div class="flex-center">
-          <div *ngIf="party.pending_request==1 else noPending" class="v-margin">
+          <div *ngIf="party.pending_request > 0 else noPending" class="v-margin">
             <button type="button" mat-fab color="warn" routerLink="/party-requests/{{party.id}}">Tienes solicitudes pendientes!</button>
           </div>
           <ng-template  #noPending>
-            <div *ngIf="party.id_request" class="v-margin">
+            <div *ngIf="party.pending_request" class="v-margin">
               <button type="button" mat-fab color="primary" routerLink="/party-requests/{{party.id}}">ver solicitudes</button>
             </div>
           </ng-template>

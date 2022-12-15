@@ -56,9 +56,14 @@
             </ng-template>
           </div>
           <ng-template #noRequest>
-            <div class="v-margin">
+            <div class="v-margin" *ngIf="party.vacancies > 0 else noVacancies">
               <button type="button" mat-fab color="primary" (click)="request(party.id)">apúntame!</button>
             </div>
+            <ng-template #noVacancies>
+              <div class="v-margin">
+                <button type="button" mat-fab color="accent">Completa :(</button>
+              </div>
+            </ng-template>
           </ng-template>
           <div class="spacing"></div>
           <div class="spacing"></div>
